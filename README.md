@@ -61,16 +61,16 @@ translate incomming commands to telecom infra system mobile network core
               +---> database-api
               +---> logging-api
               +---> grid-api
-                      +---> node-api -> cœur de réseau
-                      +---> node-api -> cœur de réseau
-                      +---> node-api -> cœur de réseau
-                      +---> node-api -> cœur de réseau
-                      +---> node-api -> cœur de réseau
-                      +---> node-api -> cœur de réseau
-                      +---> node-api -> cœur de réseau
-                      +---> node-api -> cœur de réseau
-                      +---> node-api -> cœur de réseau
-                      +---> node-api -> cœur de réseau
+                      +---> node-api -> mobile network core
+                      +---> node-api -> mobile network core
+                      +---> node-api -> mobile network core
+                      +---> node-api -> mobile network core
+                      +---> node-api -> mobile network core
+                      +---> node-api -> mobile network core
+                      +---> node-api -> mobile network core
+                      +---> node-api -> mobile network core
+                      +---> node-api -> mobile network core
+                      +---> node-api -> mobile network core
 ```
 
 # adapted-strucuture
