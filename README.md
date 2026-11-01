@@ -8,7 +8,7 @@ Main entrance, it grant or deny the access to a session api.
 mvno calls     +-------------------------+
  ------------> |  operator-identity-api  |
  <------------ +-------------------------+
-               |   authen                |
+               |   authent               |
                |   partitioning          |
                +-------------------------+
                | include:                |
