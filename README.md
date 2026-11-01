@@ -59,11 +59,8 @@ translate incomming commands to telecom infra system mobile network core
  <->   operator-session-api // main operator telecom session api
               |
               +---> database-api
-              |
               +---> logging-api
-              |
               +---> grid-api
-	              |
                       +---> node-api -> cœur de réseau
                       +---> node-api -> cœur de réseau
                       +---> node-api -> cœur de réseau
