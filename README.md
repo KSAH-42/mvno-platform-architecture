@@ -54,7 +54,7 @@ translate incomming commands to telecom infra system mobile network core
 # main-strucuture
 
 ```
- <->   operator-identity-Api
+ <->   operator-identity-api
               |
  <->   operator-session-api // main operator telecom session api
               |
@@ -77,7 +77,7 @@ translate incomming commands to telecom infra system mobile network core
 This diagram represent a structure including a custom session with customs business features
 
 ```
- <->   operator-identity-Api -------------OR------------------+
+ <->   operator-identity-api -------------OR------------------+
               |                                               |
  <->    my-virtual-operator-session-api              operator-session-api
               |                                               |
