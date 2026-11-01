@@ -42,7 +42,7 @@ mvno calls     +-------------------------+
 # operator-db-api
 store customer info, and otherthing
 
-# operator-log-api
+# operator-logging-api
 store customer info, and otherthing
 
 # operator-grid-api
