@@ -29,7 +29,6 @@ it allow to enable/disable customer services based on customer info store on the
 mvno calls     +-------------------------+
  ------------> |   operator-session-api  |
  <------------ +-------------------------+
-               +-------------------------+
                |   customers/            |--------------> [ database api ]
                |   subscriptions/        |--------------> [ grid api     ] -> [nodes]
                +-------------------------+
