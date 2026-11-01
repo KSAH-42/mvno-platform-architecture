@@ -1,5 +1,5 @@
 # mvno-platform-architecture
-this repository present a new architecture/global design for mvno and telecom infra
+this repository present a new design for an IT system between mvno and telecom infra
 
 # operator-identity-api
 Main entrance, it grant or deny the access to a session api.
