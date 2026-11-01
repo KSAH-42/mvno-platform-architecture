@@ -43,7 +43,7 @@ mvno calls     +-------------------------+
 store customer info, and otherthing
 
 # operator-logging-api
-store customer info, and otherthing
+a logger
 
 # operator-grid-api
 used managed managed node-api, route commands, etc...
