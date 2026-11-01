@@ -22,7 +22,7 @@ mvno calls     +-------------------------+
 ```
 
 # operator-session-api
-This api are used to access the database-api and the grid-api. it represent a mvno session.
+This api are used to access to the database-api and the grid-api. it represent a mvno session.
 it allow to enable/disable customer services based on customer info store on the database-api depending to mvno-session-permissions controlled by licensing 
 
 ```
