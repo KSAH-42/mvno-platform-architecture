@@ -22,7 +22,7 @@ mvno calls     +-------------------------+
 ```
 
 # operator-session-api
-This api are used to access to the database-api and the grid-api. it represent a mvno session.
+This api are used to access to the database-api and the grid-api. it represents an api used manage N number of session instances. each session are associated to unique identifier.
 it allow to enable/disable customer services based on customer info store on the database-api depending to mvno-session-permissions controlled by licensing 
 
 ```
@@ -73,7 +73,7 @@ translate incomming commands to telecom infra system mobile network core
 ```
 
 # adapted-strucuture
-This diagram represent a structure including a custom session with customs business features
+This diagram represent a structure including a custom session and expose methods needed a particular mvno.
 
 ```
  <->   operator-identity-api -------------OR------------------+
