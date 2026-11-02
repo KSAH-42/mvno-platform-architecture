@@ -45,7 +45,7 @@ store customer info, and otherthing
 a logger
 
 # operator-grid-api
-used managed managed node-api, route commands, etc...
+used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
 
 # operator-grid-node-api
 translate incomming commands to telecom infra system mobile network core 
