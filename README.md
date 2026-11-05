@@ -105,12 +105,19 @@ we don't use a global directory here for authentication with it's own central da
 each mvno xyz can call the operator-database-api.master and can call the operator-database-api.mvno.xyz dedicated only the mvno xyz.
 We can add new mvno partenair at runtime without stopping system, and other mvno can stay in communication with the telecom system.
 
+so here the custom operator-mvno-session-api.RT will call:
+  . database.api.master
+  . database.api.mvno.RT
+  . logging.api
+  . grid.api
+  
 ```
 [operator-identity-api]
         |
        \|/                      
 [operator-mvno-session-api.RT] ----+---> [operator-database-api]               // master db 
                                    +---> [operator-database-api.RabbitTelecom] // rt mvno db
+                                   +---> [operator-logging-api]
                                    +---> [operator-grid-api]
                                             +-> [operator-node.api] ---> mobile network core
                                             +-> [operator-node.api] ---> mobile network core
