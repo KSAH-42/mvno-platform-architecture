@@ -106,17 +106,19 @@ each mvno xyz can call the operator-database-api.master and can call the operato
 We can add new mvno partenair at runtime without stopping system, and other mvno can stay in communication with the telecom system.
 
 so here the custom operator-mvno-session-api.RT will call:
-  . database.api.master
-  . database.api.mvno.RT
-  . logging.api
-  . grid.api
+  * database.api.master
+  * database.api.mvno   (common mvno db)
+  * database.api.mvno.RT
+  * logging.api
+  * grid.api
   
 ```
 [operator-identity-api]
         |
        \|/                      
-[operator-mvno-session-api.RT] ----+---> [operator-database-api]               // master db 
-                                   +---> [operator-database-api.RabbitTelecom] // rt mvno db
+[operator-mvno-session-api.RT] ----+---> [operator-database-api] 
+                                   +---> [operator-database-api.mvno]
+                                   +---> [operator-database-api.mvno.RabbitTelecom]
                                    +---> [operator-logging-api]
                                    +---> [operator-grid-api]
                                             +-> [operator-node.api] ---> mobile network core
