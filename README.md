@@ -30,7 +30,7 @@ mvno calls     +-------------------------+
  ------------> |   operator-session-api  |
  <------------ +-------------------------+
                |   customers/            |--------------> [ database-api ]
-               |                         |--------------> [ grid api     ] -> [nodes]
+               |   subscriptions         |--------------> [ grid api     ] -> [nodes]
                +-------------------------+
                |   control db access     |
                |   control grid acces    |
