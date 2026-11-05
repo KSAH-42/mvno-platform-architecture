@@ -112,13 +112,15 @@ We can add new mvno partenair at runtime without stopping system, and other mvno
 [operator-mvno-session-api.RT] ----+---> [operator-database-api]               // master db 
                                    +---> [operator-database-api.RabbitTelecom] // rt mvno db
                                    +---> [operator-grid-api]
-																																			            +---> [operator-node.api]  ---> mobile network core
-																																			            +---> [operator-node.api]  ---> mobile network core
-																																			            +---> [operator-node.api]  ---> mobile network core
-																																			            +---> [operator-node.api]  ---> mobile network core
-																																			            +---> [operator-node.api]  ---> mobile network core
-																																			            +---> [operator-node.api]  ---> mobile network core
-																																			            +---> [operator-node.api]  ---> mobile network core
-																																			            +---> [operator-node.api]  ---> mobile network core
+ 								             +---> [operator-node.api]  ---> mobile network core
+ 								             +---> [operator-node.api]  ---> mobile network core
+ 								             +---> [operator-node.api]  ---> mobile network core
+ 								             +---> [operator-node.api]  ---> mobile network core
+ 								             +---> [operator-node.api]  ---> mobile network core
+ 								             +---> [operator-node.api]  ---> mobile network core
+ 								             +---> [operator-node.api]  ---> mobile network core
+ 								             +---> [operator-node.api]  ---> mobile network core
+ 								             +---> [operator-node.api]  ---> mobile network core
+
 ```
 
