@@ -1,4 +1,4 @@
-# mvno-platform-architecture
+# mvno-platform-architecture (Draft)
 this repository present a new design for an IT system between mvno and telecom infra
 
 # operator-identity-api
@@ -29,14 +29,16 @@ it allow to enable/disable customer services based on customer info store on the
 mvno calls     +-------------------------+
  ------------> |   operator-session-api  |
  <------------ +-------------------------+
-               |   customers/            |--------------> [ database api ]
-               |   subscriptions/        |--------------> [ grid api     ] -> [nodes]
+               |   customers/            |--------------> [ database-api ]
+               |                         |--------------> [ grid api     ] -> [nodes]
                +-------------------------+
                |   control db access     |
                |   control grid acces    |
                |   include permissions   |
                +-------------------------+
 ```
+easch mvno session api will connect to master database api and if needed, it can connect to
+the apropriate a custom database api for the a particular mvno 
 
 # operator-db-api
 store customer info, and otherthing
@@ -80,7 +82,7 @@ This diagram represent a structure including a custom session and expose methods
               |                                               |
  <->    my-virtual-operator-session-api              operator-session-api
               |                                               |
-              +---> database-api                              +---> database-api
+              +---> database-api.master                       +---> database-api
               +---> logging-api                               +---> ....
               +---> grid-api                                  +---> ....
                       +---> node-api -> cœur de réseau               +---> ...
@@ -95,4 +97,28 @@ This diagram represent a structure including a custom session and expose methods
                       +---> node-api -> cœur de réseau               +---> ...
                       +---> node-api -> cœur de réseau               +---> ...
 ```
+
 the my-virtual-operator-session-api and operator-session-api instances can share the same instance of database-api and the grid-api
+
+we don't use a global directory here for authentication with it's own central database. adding a new entity will cause a restart.
+
+each mvno xyz can call the operator-database-api.master and can call the operator-database-api.mvno.xyz dedicated only the mvno xyz.
+We can add new mvno partenair at runtime without stopping system, and other mvno can stay in communication with the telecom system.
+
+```
+[operator-identity-api]
+        |
+       \|/                      
+[operator-mvno-session-api.RT] ----+---> [operator-database-api]               // master db 
+                                   +---> [operator-database-api.RabbitTelecom] // rt mvno db
+                                   +---> [operator-grid-api]
+																																			            +---> [operator-node.api]  ---> mobile network core
+																																			            +---> [operator-node.api]  ---> mobile network core
+																																			            +---> [operator-node.api]  ---> mobile network core
+																																			            +---> [operator-node.api]  ---> mobile network core
+																																			            +---> [operator-node.api]  ---> mobile network core
+																																			            +---> [operator-node.api]  ---> mobile network core
+																																			            +---> [operator-node.api]  ---> mobile network core
+																																			            +---> [operator-node.api]  ---> mobile network core
+```
+
