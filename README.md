@@ -134,7 +134,8 @@ so here the custom operator-mvno-session-api.RT will call:
 ```
 
 Using single db ou multiple db ?
- -> use MongoDb (50%) or Sql (50%) ?
-Use two directory with a single db ? public authen and internal authen ?
+ -> use MongoDb or Sql ?
+Use two directory ? public authen and internal authen ? -> find something better
+ -> internal directory will use rosyln for creating dynamic entities used by mvno-session-api ?
 Replace and eventing api + event persistance and remove logging api
 add elastic search for telemetry ? do we need that ? with eventing-api we build stats.
