@@ -115,6 +115,7 @@ Use two directory ? public authen and internal authen ? -> find something better
      -> search for existing db patterns before
 Replace and eventing api + event persistance and remove logging api
 
-addinng a telecom.sdk ?
-add elastic search for telemetry ? do we need that ? with eventing-api we build stats.
+Addinng a telecom.sdk ?
+
+Add elastic search for telemetry ? do we need that ? with eventing-api we build stats.
 find something about a web compiler, or web clr
