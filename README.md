@@ -2,11 +2,12 @@
 This repository present a new design for an IT system between mvno and telecom infra
 
 ~~~
-                P   L   A   T   F   O  R  M       T   E   L   E   C   O   M      O   P   E   R   A   T   O   R
+                P   L   A   T   F   O   R   M     T   E   L   E   C   O   M     O   P   E   R   A   T   O   R
 
      ║         +----------------------------------+           ║              +------------------------------+
      ║         | operator-mvno-cli                |           ║              | operator.administration.front| <------------- internal access for management
      ║         +----------------------------------+           ║              +------------------------------+
+     ║                                                        ║                          |
      ║                                                        ║                         \|/
  mvno-calls    +----------------------------------+           ║              +------------------------------+
  ----║-------->| operator-mvno-registry-api       | ----------║------------> | operator-identity.api        |
@@ -109,6 +110,7 @@ Console application used disable/enable session, viewing actives sessions, chang
 This diagram represent a structure including a custom session and expose methods needed a particular mvno.
 
 ```
+
  <->   operator-identity-api -------------OR------------------+
               |                                               |
  <->    my-virtual-operator-session-api              operator-session-api
@@ -126,6 +128,7 @@ This diagram represent a structure including a custom session and expose methods
                       +---> node-api -> cœur de réseau               +---> ...
                       +---> node-api -> cœur de réseau               +---> ...
                       +---> node-api -> cœur de réseau               +---> ...
+
 ```
 
 
