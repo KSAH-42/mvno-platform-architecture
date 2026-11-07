@@ -76,13 +76,13 @@ Store entities using a mongodb.
 Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
 It can send event to other api when receiving a commands. It used an internal scheduler or an operator-scheduler-api to repeat commands to the node until it succeed.
 the operator-grid--scheduler-api can repeat and used undefinitely or a max counter if it it reach it can report an emergency error and stop depending to the command settings
-no MOM is used, but commands and query to this api are persisted into it's own db which are not represented.
+no MOM is used, but commands and query to this api are persisted into it's own db which are not represented. this api must expose resgisterNode and unregisterNode
 
 # operator-grid-node-api
 Translate incomming commands to telecom infra a provide metrics.
 
 # operator-cli
-Console application used to send command to grid, making crud operations, view status, viewing api logs, deactivate a grid-node, cancel commands, etc... 
+Console application used to send command to grid, making crud operations, view status, viewing api logs, deactivate a grid-node, cancel commands, registerNode, etc... 
 
 # operator-mvno-cli
 Console application used disable/enable session, viewing actives sessions, changing api settings, starting session api, etc... 
