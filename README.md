@@ -5,34 +5,34 @@ This repository present a new design for an IT system between mvno and telecom i
                 P   L   A   T   F   O  R  M       T   E   L   E   C   O   M      O   P   E   R   A   T   O   R
 
      ║         +----------------------------------+           ║              +------------------------------+
-     ║         | mvno-session-cli                 |           ║              | operator.administration.front| <------------- internal access for management
+     ║         | operator-mvno-cli                |           ║              | operator.administration.front| <------------- internal access for management
      ║         +----------------------------------+           ║              +------------------------------+
      ║                                                        ║                         \|/
  mvno-calls    +----------------------------------+           ║              +------------------------------+
- ----║-------->| mvno-session-registry-api        | ----------║------------> | operator-identity.api        +
+ ----║-------->| operator-mvno-registry-api       | ----------║------------> | operator-identity.api        +
  <---║-------- +----------------------------------+           ║              +------------------------------+
      ║                     /|\                                ║                         /|\
      ║                      |                                 ║                          |
      ║                      |                                 ║                          |
      ║          ....................................          ║                          |
-     ║          .   mvno sessions apis             .          ║              +------------------------------+
+     ║          .   mvno operator apis             .          ║              +------------------------------+
      ║          .           |                      .          ║              | operator-cli                 |
      ║          .           |                      .          ║              +------------------------------+
      ║          .           |                      .          ║                          |
  mvno-calls     .  +-----------------------------+ .          ║              +------------------------------+
- ----║--------> .  | mvno-session-api            | . ---------║----+-------> | operator-datastore.api       |
+ ----║--------> .  | operator-mvno.-api          | . ---------║----+-------> | operator-datastore.api       |
  <---║--------- .  |                             | .          ║    |         +------------------------------+
      ║          .  +-----------------------------+ .          ║    |
      ║          .           |                      .          ║    |         +------------------------------+
      ║          .           |                      .          ║    |         | operator-monitoring.api      +
  mvno-calls     .  +-----------------------------+ .          ║    |         +------------------------------+
- ----║--------> .  | mvno-session-api.AbcTelecom | . ---------║----|
+ ----║--------> .  | operator-mvno.api.AbcTelecom| . ---------║----|
  <---║--------- .  |                             | .          ║    |         +------------------------------+
      ║          .  +-----------------------------+ .          ║    +-------> | operator-grid.api            +
      ║          .           |                      .          ║    |         +------------------------------+
      ║          .           |                      .          ║    |                     \|/        /|\
  mvno-calls     .  +-----------------------------+ .          ║    |               +------------------------+
- ----║--------> .  | mvno-session-api.DefTelecom | .          ║    |               | operator-grid-node-api |   <-------->  Mobile network core
+ ----║--------> .  | operator-mvno-api.DefTelecom| .          ║    |               | operator-grid-node-api |   <-------->  Mobile network core
  <---║--------- .  |                             | . ---------║----+               +------------------------+
      ║          .  +-----------------------------+ .          ║                    | operator-grid-node-api |   <-------->  Mobile network core
      ║          .                                  .          ║                    +------------------------+
@@ -52,10 +52,10 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                                                        ║                    +------------------------+
 ~~~
 
-# mvno-session-registry-api
-Main entrance authenticate mvnno an redirect to the rigth sesssion api
+# operator-mvno-registry-api
+Main entrance authenticate mvnno an redirect to the rigth api
 
-# mvno-session-api
+# operator-mvno-api
 Dedicated implementation of a mvno partenair as a web api.
 Mvno make http calls to this api. It can handle  N number of internal memory session instances. 
 And expose commands and queries.
