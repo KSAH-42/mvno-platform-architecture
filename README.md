@@ -4,7 +4,7 @@ This repository present a new design for an IT system between mvno and telecom i
 ~~~
 
      ║         +----------------------------------+           ║              +------------------------------+
-     ║         | mvno-session-cli                 |           ║              | operrator.adminstration.front| <------------- internal access for management
+     ║         | mvno-session-cli                 |           ║              | operator.administration.front| <------------- internal access for management
      ║         +----------------------------------+           ║              +------------------------------+
      ║                                                        ║                         \|/
  mvno-calls    +----------------------------------+           ║              +------------------------------+
