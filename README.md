@@ -1,5 +1,5 @@
 # mvno-platform-architecture (Draft)
-this repository present a new design for an IT system between mvno and telecom infra
+This repository present a new design for an IT system between mvno and telecom infra
 
 ~~~
 
@@ -56,26 +56,26 @@ Main entrance authenticate mvnno an redirect to the rigth sesssion api
 
 # mvno-session-api
 Dedicated implementation of a mvno partenair as a web api.
-mvno make http calls to this api. It can handle  N number of internal memory session instances. 
+Mvno make http calls to this api. It can handle  N number of internal memory session instances. 
 And expose commands and queries.
-the mvno-session-api A and mvno-session-api B can have controllers which are totally differents, it must be adapted to needs of mvno partenairs
+The mvno-session-api A and mvno-session-api B can have controllers which are totally differents, it must be adapted to needs of mvno partenairs
 
 # operrator.administration.front
-reprensent a web front used by operator staff for administration. This front make http calls to internal web api, for configuration, viewing status, view logs, ...
+Reprensent a web front used by telecom operator staff for administration. This front make http calls to internal web api, for configuration, viewing status, view logs, ...
 
 Mvno will not have access to it.
 
 # operator-identity-api
-authenticate api and users, deliver permissions 
+Authenticate api and users, deliver permissions.
 
 # operator-datastore-api
-store entities using a mongodb
+Store entities using a mongodb.
 
 # operator-grid-api
-used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
+Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
 
 # operator-grid-node-api
-translate incomming commands to telecom infra system mobile network core 
+Translate incomming commands to telecom infra.
 
 # strucuture
 This diagram represent a structure including a custom session and expose methods needed a particular mvno.
