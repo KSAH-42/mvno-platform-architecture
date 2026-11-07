@@ -34,9 +34,25 @@ This repository present a new design for an IT system between mvno and telecom i
  mvno-calls     .  +-----------------------------+ .          ║    |               +------------------------+
  ----║--------> .  | operator-mvno-api.DefTelecom| .          ║    |               | operator-grid-node-api |   <-------->  Mobile network core
  <---║--------- .  |                             | . ---------║----+               +------------------------+
-     ║          .  +-----------------------------+ .          ║                    | operator-grid-node-api |   <-------->  Mobile network core
-     ║          .                                  .          ║                    +------------------------+
-     ║          ....................................          ║                    | operator-grid-node-api |   <-------->  Mobile network core
+     ║          .  +-----------------------------+ .          ║    |               | operator-grid-node-api |   <-------->  Mobile network core
+     ║          .                                  .          ║    |               +------------------------+
+     ║          ....................................          ║    |               | operator-grid-node-api |   <-------->  Mobile network core
+     ║                                                        ║    |               +------------------------+
+     ║                                                        ║    |               | operator-grid-node-api |   <-------->  Mobile network core
+     ║                                                        ║    |               +------------------------+
+     ║                                                        ║    |               | operator-grid-node-api |   <-------->  Mobile network core
+     ║                                                        ║    |               +------------------------+
+     ║                                                        ║    |               | operator-grid-node-api |   <-------->  Mobile network core
+     ║                                                        ║    |               +------------------------+
+     ║                                                        ║    |               | operator-grid-node-api |   <-------->  Mobile network core
+     ║                                                        ║    |               +------------------------+
+     ║                                                        ║    |               | operator-grid-node-api |   <-------->  Mobile network core
+     ║                                                        ║    |               +------------------------+
+     ║                                                        ║    |
+     ║                                                        ║    |         +------------------------------+
+     ║                                                        ║    +-------> + operator-grid.api            +
+     ║                                                        ║              +------------------------------+
+     ║                                                        ║                          \|/        /|\
      ║                                                        ║                    +------------------------+
      ║                                                        ║                    | operator-grid-node-api |   <-------->  Mobile network core
      ║                                                        ║                    +------------------------+
@@ -50,6 +66,8 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                                                        ║                    +------------------------+
      ║                                                        ║                    | operator-grid-node-api |   <-------->  Mobile network core
      ║                                                        ║                    +------------------------+
+
+
 ~~~
 
 # operator-mvno-registry-api
@@ -77,6 +95,7 @@ Used managed managed node-api, route commands, etc... the grid api will send a c
 It can send event to other api when receiving a commands. It used an internal scheduler or an operator-scheduler-api to repeat commands to the node until it succeed.
 the operator-grid--scheduler-api can repeat and used undefinitely or a max counter if it it reach it can report an emergency error and stop depending to the command settings
 no MOM is used, but commands and query to this api are persisted into it's own db which are not represented. this api must expose resgisterNode and unregisterNode
+grid-api must view as entity stored in the database.
 
 # operator-grid-node-api
 Translate incomming commands to telecom infra a provide metrics.
