@@ -78,6 +78,7 @@ Dedicated implementation of a mvno partenair as a web api.
 Mvno make http calls to this api. It can handle  N number of internal memory session instances. 
 And expose commands and queries.
 The mvno-session-api A and mvno-session-api B can have controllers which are totally differents, it must be adapted to needs of mvno partenairs
+All operator-mvno-api must expose OpenSession(string source, string password, TimeSpan duration) and CloseSession() 
 
 # operator.administration.front
 Reprensent a web front used by telecom operator staff for administration. This front make http calls to internal web api, for configuration, viewing status, view logs, changing customers settings, ...
