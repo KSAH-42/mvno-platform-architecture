@@ -76,7 +76,7 @@ Store entities using a mongodb.
 Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
 
 # operator-grid-node-api
-Translate incomming commands to telecom infra.
+Translate incomming commands to telecom infra a provide metrics.
 
 # mvno-cli
 Console application used to send command to grid, making crud operations, view status, viewing api logs, deactivate a grid-node, etc... 
