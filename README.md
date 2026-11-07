@@ -80,10 +80,10 @@ the operator-grid--scheduler-api can repeat and used undefinitely or a max count
 # operator-grid-node-api
 Translate incomming commands to telecom infra a provide metrics.
 
-# mvno-cli
-Console application used to send command to grid, making crud operations, view status, viewing api logs, deactivate a grid-node, etc... 
+# operator-cli
+Console application used to send command to grid, making crud operations, view status, viewing api logs, deactivate a grid-node, cancel commands, etc... 
 
-# mvno-session-cli
+# operator-mvno-cli
 Console application used disable/enable session, viewing actives sessions, changing api settings, starting session api, etc... 
 
 # strucuture
