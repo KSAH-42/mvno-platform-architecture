@@ -19,7 +19,7 @@ this repository present a new design for an IT system between mvno and telecom i
      ║          .           |                      .          ║                          |
      ║          .          \|/                     .          ║                          |
  mvno-calls     .  +-----------------------------+ .          ║              +------------------------------+
- ----║--------> .  | mvno-session-api.AbcTelecom | . ---------║----+-------> | operator-database.api       |
+ ----║--------> .  | mvno-session-api.AbcTelecom | . ---------║----+-------> | operator-database.api        |
  <---║--------- .  |                             | .          ║    |         +------------------------------+
      ║          .  +-----------------------------+ .          ║    |
      ║          .           |                      .          ║    |         +------------------------------+
