@@ -74,6 +74,7 @@ Store entities using a mongodb.
 
 # operator-grid-api
 Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
+It can send event to other api when receiving a commands. It used an internal scheduler or an operator-scheduler-api to repeat commands to the node until it succeed.
 
 # operator-grid-node-api
 Translate incomming commands to telecom infra a provide metrics.
