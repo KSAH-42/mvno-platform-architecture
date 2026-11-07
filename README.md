@@ -15,7 +15,7 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                      |                                 ║                          |
      ║          ....................................          ║                          |
      ║          .   mvno sessions apis             .          ║              +------------------------------+
-     ║          .           |                      .          ║              | operator-cli.api             |
+     ║          .           |                      .          ║              | operator-cli                 |
      ║          .           |                      .          ║              +------------------------------+
      ║          .           |                     .          ║                          |
  mvno-calls     .  +-----------------------------+ .          ║              +------------------------------+
@@ -76,6 +76,9 @@ Used managed managed node-api, route commands, etc... the grid api will send a c
 
 # operator-grid-node-api
 Translate incomming commands to telecom infra.
+
+# mvno-cli
+Console application used to send command to grid, making crud operations, view status, viewing api logs, etc... 
 
 # strucuture
 This diagram represent a structure including a custom session and expose methods needed a particular mvno.
