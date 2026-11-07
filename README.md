@@ -67,7 +67,6 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                                                        ║                    | operator-grid-node-api |   <-------->  Mobile network core
      ║                                                        ║                    +------------------------+
 
-
 ~~~
 
 # operator-mvno-registry-api
