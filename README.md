@@ -3,9 +3,9 @@ This repository present a new design for an IT system between mvno and telecom i
 
 ~~~
 
-     ║                                                        ║              +------------------------------+
-     ║                                                        ║              | operrator.adminstration.front| <------------- internal access for management
-     ║                                                        ║              +------------------------------+
+     ║         +----------------------------------+           ║              +------------------------------+
+     ║         | mvno-session-cli                 |           ║              | operrator.adminstration.front| <------------- internal access for management
+     ║         +----------------------------------+           ║              +------------------------------+
      ║                                                        ║                         \|/
  mvno-calls    +----------------------------------+           ║              +------------------------------+
  ----║-------->| mvno-session-registry-api        | ----------║------------> | operator-identity.api        +
@@ -14,9 +14,9 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                      |                                 ║                          |
      ║                      |                                 ║                          |
      ║          ....................................          ║                          |
-     ║          .   mvno sessions apis             .          ║                          |
-     ║          .           |                      .          ║                          |
-     ║          .           |                      .          ║                          |
+     ║          .   mvno sessions apis             .          ║              +------------------------------+
+     ║          .           |                      .          ║              | operator-cli.api             |
+     ║          .           |                      .          ║              +------------------------------+
      ║          .          \|/                     .          ║                          |
  mvno-calls     .  +-----------------------------+ .          ║              +------------------------------+
  ----║--------> .  | mvno-session-api.AbcTelecom | . ---------║----+-------> | operator-datastore.api       |
