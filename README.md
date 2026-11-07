@@ -97,7 +97,7 @@ no MOM is used, but commands and query to this api are persisted into it's own d
 grid-api must view as entity stored in the database.
 
 # operator-grid-node-api
-Translate incomming commands to telecom infra a provide metrics.
+Translate incomming commands to telecom infra and communication provide metrics.
 
 # operator-cli
 Console application used to send command to grid, making crud operations, view status, viewing api logs, deactivate a grid-node, cancel commands, registerNode, etc... 
