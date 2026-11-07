@@ -26,7 +26,7 @@ This repository present a new design for an IT system between mvno and telecom i
      ║          .           |                      .          ║    |         +------------------------------+
      ║          .           |                      .          ║    |         | operator-monitoring.api      +
  mvno-calls     .  +-----------------------------+ .          ║    |         +------------------------------+
- ----║--------> .  | operator-mvno.api.AbcTelecom| . ---------║----|
+ ----║--------> .  | operator-mvno.api.AbcTelecom| . ---------║----+
  <---║--------- .  |                             | .          ║    |         +------------------------------+
      ║          .  +-----------------------------+ .          ║    +-------> | operator-grid.api            +
      ║          .           |                      .          ║    |         +------------------------------+
