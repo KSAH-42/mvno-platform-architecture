@@ -19,7 +19,7 @@ this repository present a new design for an IT system between mvno and telecom i
      ║          .           |                      .          ║                          |
      ║          .          \|/                     .          ║                          |
  mvno-calls     .  +-----------------------------+ .          ║              +------------------------------+
- ----║--------> .  | mvno-session-api.AbcTelecom | . ---------║----+-------> | operator-database.api        |
+ ----║--------> .  | mvno-session-api.AbcTelecom | . ---------║----+-------> | operator-datastore.api       |
  <---║--------- .  |                             | .          ║    |         +------------------------------+
      ║          .  +-----------------------------+ .          ║    |
      ║          .           |                      .          ║    |         +------------------------------+
@@ -67,7 +67,7 @@ mvno will not have access.
 # operator-identity-api
 authenticate api and users, deliver permissions 
 
-# operator-database-api
+# operator-datastore-api
 store entities using a mongodb
 
 # operator-grid-api
