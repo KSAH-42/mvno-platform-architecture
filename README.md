@@ -20,19 +20,19 @@ This repository present a new design for an IT system between mvno and telecom i
      ║          .           |                      .          ║              +------------------------------+
      ║          .           |                      .          ║                          |
  mvno-calls     .  +-----------------------------+ .          ║              +------------------------------+
- ----║--------> .  | mvno-session-api.AbcTelecom | . ---------║----+-------> | operator-datastore.api       |
+ ----║--------> .  | mvno-session-api            | . ---------║----+-------> | operator-datastore.api       |
  <---║--------- .  |                             | .          ║    |         +------------------------------+
      ║          .  +-----------------------------+ .          ║    |
      ║          .           |                      .          ║    |         +------------------------------+
      ║          .           |                      .          ║    |         | operator-monitoring.api      +
  mvno-calls     .  +-----------------------------+ .          ║    |         +------------------------------+
- ----║--------> .  | mvno-session-api.DefTelecom | . ---------║----|
+ ----║--------> .  | mvno-session-api.AbcTelecom | . ---------║----|
  <---║--------- .  |                             | .          ║    |         +------------------------------+
      ║          .  +-----------------------------+ .          ║    +-------> | operator-grid.api            +
      ║          .           |                      .          ║    |         +------------------------------+
      ║          .           |                      .          ║    |                     \|/        /|\
  mvno-calls     .  +-----------------------------+ .          ║    |               +------------------------+
- ----║--------> .  | mvno-session-api.GhiTelecom | .          ║    |               | operator-grid-node-api |   <-------->  Mobile network core
+ ----║--------> .  | mvno-session-api.DefTelecom | .          ║    |               | operator-grid-node-api |   <-------->  Mobile network core
  <---║--------- .  |                             | . ---------║----+               +------------------------+
      ║          .  +-----------------------------+ .          ║                    | operator-grid-node-api |   <-------->  Mobile network core
      ║          .                                  .          ║                    +------------------------+
