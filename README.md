@@ -61,8 +61,9 @@ And expose commands and queries.
 the mvno-session-api A and mvno-session-api B can have controllers which are totally differents, it must be adapted to needs of mvno partenairs
 
 # operrator.administration.front
-reprensent a web front used by operator staff for adminsitration. this front make http calls to internal web api, for configuration, viewing status, view logs
-mvno will not have access.
+reprensent a web front used by operator staff for administration. This front make http calls to internal web api, for configuration, viewing status, view logs, ...
+
+Mvno will not have access to it.
 
 # operator-identity-api
 authenticate api and users, deliver permissions 
