@@ -30,7 +30,7 @@ This repository present a new design for an IT system between mvno and telecom i
  <---║--------- .  |                             | .          ║    |         +------------------------------+
      ║          .  +-----------------------------+ .          ║    +-------> | operator-grid.api            +
      ║          .           |                      .          ║    |         +------------------------------+
-     ║          .           |                      .          ║    |                     \|/        /|\
+     ║          .           |                      .          ║    |                         \|/        /|\
  mvno-calls     .  +-----------------------------+ .          ║    |               +------------------------+
  ----║--------> .  | operator-mvno-api.DefTelecom| .          ║    |               | operator-grid-node-api |   <-------->  Mobile network core
  <---║--------- .  |                             | . ---------║----+               +------------------------+
@@ -52,7 +52,7 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                                                        ║    |         +------------------------------+
      ║                                                        ║    +-------> + operator-grid.api            +
      ║                                                        ║              +------------------------------+
-     ║                                                        ║                          \|/        /|\
+     ║                                                        ║                              \|/        /|\
      ║                                                        ║                    +------------------------+
      ║                                                        ║                    | operator-grid-node-api |   <-------->  Mobile network core
      ║                                                        ║                    +------------------------+
