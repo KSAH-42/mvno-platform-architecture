@@ -3,8 +3,10 @@ this repository present a new design for an IT system between mvno and telecom i
 
 ~~~
 
-     ║                                                        ║
-     ║                                                        ║
+     ║                                                        ║              +------------------------------+
+     ║                                                        ║              | operrator.adminstration.front| <------------- internal access for management
+     ║                                                        ║              +------------------------------+
+     ║                                                        ║                         \|/
  mvno-calls    +----------------------------------+           ║              +------------------------------+
  ----║-------->| mvno-session-registry-api        | ----------║------------> | operator-idientity.api       +
  <---║-------- +----------------------------------+           ║              +------------------------------+
@@ -53,9 +55,14 @@ this repository present a new design for an IT system between mvno and telecom i
 Main entrance authenticate mvnno an redirect to the rigth sesssion api
 
 # mvno-session-api
-This api are used to access to the internal apis. it represents an api used manage N number of session instances. 
-Session api host the business code for the mvno
-Session api can now access to the datastore api where business api are stored and execute custom task
+Dedicated implementation of a mvno partenair as a web api.
+mvno make http calls to this api. It can handle  N number of internal memory session instances. 
+And expose commands and queries.
+the mvno-session-api A and mvno-session-api B can have controllers which are totally differents, it must be adapted to needs of mvno partenairs
+
+# operrator.adminstration.front
+reprensent a web front used by operator staff for adminsitration. this front make http calls to internal web api, for configuration, viewing status, view logs
+mvno will not have access.
 
 # operator-identity-api
 authenticate api and users, deliver permissions 
