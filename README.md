@@ -80,6 +80,9 @@ Translate incomming commands to telecom infra.
 # mvno-cli
 Console application used to send command to grid, making crud operations, view status, viewing api logs, etc... 
 
+# mvno-session-cli
+Console application used disable/enable session, viewing actives sessions, changing remote settings, etc... 
+
 # strucuture
 This diagram represent a structure including a custom session and expose methods needed a particular mvno.
 
