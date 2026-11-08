@@ -24,7 +24,7 @@ This repository present a full web new design for an IT system between mvno and 
      ║          .           |                       .         ║    |         +------------------------------+
      ║          .           |                       .         ║    |                     |
      ║          .           |                       .         ║    |         +------------------------------+      +---------------------------------------+
- mvno-calls     .  +-----------------------------+  .         ║    |-------▸ | operator-memory-pool.api     | ◂--- | operator-transaction-pool-api         |
+ mvno-calls     .  +-----------------------------+  .         ║    +-------▸ | operator-memory-pool.api     | ◂--- | operator-transaction-pool-api         |
  ----║--------▸ .  | operator-mvno-api           |  . --------║----+         | store: scripts, objects,etc. |      +---------------------------------------+
  ◂---║--------- .  |                             |  .         ║    |         +------------------------------+
      ║          .  +-----------------------------+  .         ║    |                     |
