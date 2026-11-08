@@ -10,7 +10,7 @@ This repository present a full web new design for an IT system between mvno and 
      ║                                                        ║                          |
      ║                                                        ║                          ▼
  mvno-calls    +----------------------------------+           ║              +------------------------------+
- ----║-------▸ | operator-mvno-registry-api       + ----------║------------▸ | operator-identity.api        |
+ ----║-------▸ | operator-mvno-registry-api       | ----------║------------▸ | operator-identity.api        |
  ◂---║-------- +----------------------------------+           ║              +------------------------------+
      ║                      ▲                                 ║                          ▲
      ║                      |                                 ║                          |
