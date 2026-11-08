@@ -33,7 +33,7 @@ This repository present a new design for an IT system between mvno and telecom i
  mvno-calls     .  +-----------------------------+  .         ║    |         +------------------------------+
  ----║--------▸ .  | operator-mvno.api.AbcTelecom|  . --------║----+                     | 
  ◂---║--------- .  |                             |  .         ║    |         +------------------------------+
-     ║          .  +-----------------------------+  .         ║    +-------▸ | operator-grid.api            | // located in France (outside Europe)
+     ║          .  +-----------------------------+  .         ║    +-------▸ | operator-grid.api            | // located in France
      ║          .           |                       .         ║    |         +------------------------------+
      ║          .           |                       .         ║    |                     |      ▼  ▲
  mvno-calls     .  +-----------------------------+  .         ║    |               +------------------------+
