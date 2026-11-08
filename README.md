@@ -81,7 +81,7 @@ The mvno-session-api A and mvno-session-api B can have controllers which are tot
 All operator-mvno-api must expose OpenSession(string source, string password, TimeSpan renewalExpirationTimeout /* throw exception if it's greater the timeout settings from the registry or localsettings */)  and CloseSession()
 
 # operator.administration.front
-Reprensent a web front used by telecom operator staff for administration. This front make http calls to internal web api, for configuration, viewing status, view logs, changing customers settings, ...
+Reprensent a web front used by telecom operator staff for administration. This front make http calls to internal web api, for configuration, viewing status, view logs, changing customers settings, maintenance ...
 
 Mvno will not have access to it.
 
