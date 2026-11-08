@@ -25,7 +25,7 @@ This repository present a new design for an IT system between mvno and telecom i
      ║          .           |                       .         ║    |                     |
      ║          .           |                       .         ║    |         +------------------------------+      +---------------------------------------+
  mvno-calls     .  +-----------------------------+  .         ║    |-------▸ | operator-memory-pool.api     |◂-----| operator-transaction-runner-api       |
- ----║--------▸ .  | operator-mvno-api           |  . --------║----+         | (scripts,serialized objects) |      +---------------------------------------+
+ ----║--------▸ .  | operator-mvno-api           |  . --------║----+         | store: scripts, objects,etc. |      +---------------------------------------+
  ◂---║--------- .  |                             |  .         ║    |         +------------------------------+
      ║          .  +-----------------------------+  .         ║    |                     |
      ║          .           |                       .         ║    |         +------------------------------+
