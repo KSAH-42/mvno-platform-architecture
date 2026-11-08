@@ -16,9 +16,9 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                      |                                 ║                          |
      ║                      |                                 ║                          |
      ║          ....................................          ║                          |
-     ║          .   mvno operator apis             .          ║              +------------------------------+
-     ║          .           |                      .          ║              | operator-cli                 |
-     ║          .           |                      .          ║              +------------------------------+
+     ║          .   mvno operator apis             .          ║              +------------------------------+      +-----------------+
+     ║          .           |                      .          ║              | operator-cli                 |      | operator-gr-api | 
+     ║          .           |                      .          ║              +------------------------------+      +-----------------+
      ║          .           |                      .          ║                          |
  mvno-calls     .  +-----------------------------+ .          ║              +------------------------------+
  ----║--------> .  | operator-mvno-api           | . ---------║----+-------> | operator-datastore.api       |
