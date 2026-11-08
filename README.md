@@ -155,13 +155,13 @@ structure
 the state are used to mark the object for deletion,or anything.
 
 # operator-transaction-pool-api
-this api peek a transaction, play a transaction, pause, restart a transaction commands, the transaction can be:
+this api peek a transaction, play a transaction, start, pause, stop or cancel a transaction. A transaction can be:
  * a class
  * a class load on different assembly
  * a script
 
-Depending the implementation of transaction-workflow, it can a class a script that make http call on web-api, a store the results/status/errors, etc... the transaction can implement retries mecanism.
-If a failure occurs on this api, when restarting this api, we can restore the position of the transaction, and continue the process.
+Depending of the implementation of transaction-workflow, it can a be also class a script that make http call on web-api. It store the results/status/errors, etc... abd the transaction can implement retries mecanisms.
+The transaction must save it's status, that mark as restauration point in case of critical failure occurs. The after restart the api, we can restore the position of the transaction, and continue the process.
 
 # operator-grid-api
 Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
