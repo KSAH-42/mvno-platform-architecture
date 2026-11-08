@@ -2,7 +2,7 @@
 This repository present a new design for an IT system between mvno and telecom infra
 
 ~~~
-                         P L A T F O R M     T E L E C O M    O P E R A T O R    F O R     M V N O S
+                         T E L E C O M    O P E R A T O R    P L A T F O R M    F O R     M V N O S
 
      ║         +----------------------------------+           ║              +------------------------------+
      ║         | operator-mvno-cli                |           ║              | operator.administration.front| ◂------------- internal access for management
