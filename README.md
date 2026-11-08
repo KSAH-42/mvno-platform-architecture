@@ -145,7 +145,7 @@ a package repository is not present in the diagram. So the grid-api must have co
 
 # operator-datastore-api
 Store entities and settings using a mongodb in a single place. One datastore per environnement DEV,PROD,etc... for failover and restoration and backup.
-for sensitive data like credit card, the real value must be store on operator-vault-api which are not represent here.
+for sensitive data like credit card, the real value must be store on operator-vault-api which are not represent here. the CreditCardEntity can expose a kind of id-pointer to the vault or something similar.
 
 # operator-memory-pool-api
 In case of bulk commands, the memory-pool store transactions including the status of each steps. Transaction represent the commands/workflow to execute. Each transaction store in the memory-pool is just object with a id, a type, a list of step with status, and the transaction settings.
