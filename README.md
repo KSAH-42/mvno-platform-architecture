@@ -165,4 +165,4 @@ Translate incomming commands to telecom infra and communication provide metrics.
 Addinng a telecom.sdk ?
 Add elastic search for telemetry ? do we need that ? with eventing-api we build stats.
 find something about a web compiler, or web clr
-use transaction catalog ?
+user can select a transaction from a catalog / datastore ?
