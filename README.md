@@ -85,7 +85,7 @@ Console application used for:
  * send a request to a mvno-api
 
 # operator-mvno-registry-api
-Main entrance authenticate mvnno an redirect to the rigth api.
+Main entrance authenticate mvnno an redirect to the rigth api. It's act as mvno directory.
 The mvno-api can be located in France, or elsewhere.
 
 # operator-mvno-api
