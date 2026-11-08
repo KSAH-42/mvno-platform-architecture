@@ -134,7 +134,7 @@ Console application used control telecom infra by making only http calls. It can
 
 ~~~
  operator-cli.exe logon -u "admin" -p "password"
- operator-cli.exe grid create-node --id "1234465B-1888-48E8-BB43-181D2C1F682F" --type rabbit.telecom
+ operator-cli.exe grid create-node --id "1234465B-1888-48E8-BB43-181D2C1F682F" --type rabbit.telecom/1.1
  operator-cli.exe grid start-node --id "1234465B-1888-48E8-BB43-181D2C1F682F"
  operator-cli.exe network enable-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --node 1234465B-1888-48E8-BB43-181D2C1F682F
  operator-cli.exe network set-cellular-bandwith --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value 12345000 --node 1234465B-1888-48E8-BB43-181D2C1F682F
