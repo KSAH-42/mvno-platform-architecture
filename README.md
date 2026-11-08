@@ -95,6 +95,7 @@ Store entities using a mongodb.
 Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
 It can send event to other api when receiving a commands. It used an internal scheduler or an operator-scheduler-api to repeat commands to the node until it succeed.
 the operator-grid--scheduler-api can repeat and used undefinitely or a max counter if it it reach it can report an emergency error and stop depending to the command settings
+if the operator-grid-api can not join the operator-grid-scheduler-api it can enter into a fail over mode and switch and select a next to a operator-grid-scheduler-api from a list where the list is stored on the operator-datastore-api entity
 no MOM is used, but commands and query to this api are persisted into it's own db which are not represented. this api must expose resgisterNode and unregisterNode
 grid-api must view as entity stored in the database.
 
