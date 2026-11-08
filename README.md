@@ -164,5 +164,6 @@ Translate incomming commands to telecom infra and communication provide metrics.
 # Temp
 Addinng a telecom.sdk ?
 Add elastic search for telemetry ? do we need that ? with eventing-api we build stats.
+fuse the operator-transaction-pool-api and operator-memory-pool-api ???
 find something about a web compiler, or web clr
 user can select a transaction from a catalog / datastore ?
