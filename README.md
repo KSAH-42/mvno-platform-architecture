@@ -124,7 +124,7 @@ Console application used control telecom infra by making only http calls. It can
  * changing node settings
  * creating a transaction store in the memory pool
  * cancel a transaction
- * pause a transaction, even rollback a transaction (the step class will expose a method execute and a method call rollback)
+ * pause a transaction, even rollback a transaction (a transaction contains a list of steps and the step class will expose a method execute and a method call rollback, we can it forward for executing and moving backward on the collection and call the rollback methods)
  * import/export datastore contents
  * etc... 
 
