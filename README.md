@@ -1,5 +1,5 @@
 # mvno-platform-architecture (Draft)
-This repository present a full web new design for an IT system between mvno and telecom infra based
+This repository present a full web new design for an IT system between mvno and telecom infra
 
 ~~~
                          T E L E C O M    O P E R A T O R    P L A T F O R M    F O R     M V N O S
@@ -114,7 +114,7 @@ Mvno partenairs will not have access to it from mvno-api.
 Authenticate api and users, deliver permissions.
 
 # operator-cli
-Console application used to
+Console application used control telecom infra by making only hhtp calls. It can do the following tasks:
  * send command to grid
  * making crud operations
  * query node status
