@@ -124,7 +124,7 @@ Console application used control telecom infra by making only http calls. It can
  * changing node settings
  * creating a transaction store in the memory pool
  * cancel a transaction
- * pause a transaction
+ * pause a transaction, even rollback a transaction
  * import/export datastore contents
  * etc... 
 
