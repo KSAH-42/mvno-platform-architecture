@@ -10,19 +10,23 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                                                        ║                          |
      ║                                                        ║                          ▼
  mvno-calls    +----------------------------------+           ║              +------------------------------+
- ----║-------▸ | operator-mvno-registry-api       +           ║------------▸ | operator-identity.api        |
+ ----║-------▸ | operator-mvno-registry-api       + ----------║------------▸ | operator-identity.api        |
  ◂---║-------- +----------------------------------+           ║              +------------------------------+
      ║                      ▲                                 ║                          ▲
      ║                      |                                 ║                          |
      ║                      |                                 ║                          |
+     ║                      |                                 ║              +------------------------------+      +---------------------------------------+
+     ║                      |                                 ║              | operator-cli                 |      | operator-cli-gr / or operator-cli-api | 
+     ║                      |                                 ║              +------------------------------+      +---------------------------------------+
+     ║                      |                                 ║                          |
      ║          . . . . . . . . . . . . . . . . . . .         ║                          |
-     ║          .   mvno operator apis              .         ║              +------------------------------+      +---------------------------------------+
-     ║          .           |                       .         ║              | operator-cli                 |      | operator-cli-gr / or operator-cli-api | 
-     ║          .           |                       .         ║              +------------------------------+      +---------------------------------------+
-     ║          .           |                       .         ║                          |
- mvno-calls     .  +-----------------------------+  .         ║              +------------------------------+
- ----║--------▸ .  | operator-mvno-api           |  . --------║----+-------▸ | operator-datastore.api       |
- ◂---║--------- .  |                             |  .         ║    |         +------------------------------+
+     ║          .   mvno operator apis              .         ║              +------------------------------+ 
+     ║          .           |                       .         ║    +-------▸ | operator-datastore.api       |
+     ║          .           |                       .         ║    |         +------------------------------+
+     ║          .           |                       .         ║    |                     |
+ mvno-calls     .  +-----------------------------+  .         ║    |         +------------------------------+      +---------------------------------------+
+ ----║--------▸ .  | operator-mvno-api           |  . --------║----+-------▸ | operator-memory-pool.api     |◂-----| operator-transaction-runner-api       |
+ ◂---║--------- .  |                             |  .         ║    |         +------------------------------+      +---------------------------------------+
      ║          .  +-----------------------------+  .         ║    |                     |
      ║          .           |                       .         ║    |         +------------------------------+
      ║          .           |                       .         ║    |         | operator-monitoring.api      |
@@ -70,78 +74,90 @@ This repository present a new design for an IT system between mvno and telecom i
 
 ~~~
 
+# operator-mvno-cli
+Console application used disable/enable session, changing registry configuration or api config.
+Querying the status of active session.
+Querying the status of mnvo-api
+Enabling/disabling mnvo-api
+Changing token renewal timeout
+Send a request to a mvno-api for testing
+
 # operator-mvno-registry-api
-Main entrance authenticate mvnno an redirect to the rigth api
+Main entrance authenticate mvnno an redirect to the rigth api.
+The mvno-api can be located in France, or elsewhere.
 
 # operator-mvno-api
-Dedicated implementation of a mvno partenair as a web api.
-Mvno make http calls to this api. It can handle  N number of internal memory session instances. 
-And expose commands and queries.
-The mvno-session-api A and mvno-session-api B can have controllers which are totally differents, it must be adapted to needs of mvno partenairs
-All operator-mvno-api must expose OpenSession(string source, string password, TimeSpan renewalExpirationTimeout /* throw exception if it's greater the timeout settings from the registry or localsettings */)  and CloseSession()
+Dedicated implementation for a mvno partenair as a web api.
+Mvno partenair make http calls to this api.
+It can handle  N number of internal memory session instances. 
+It expose commands and queries, only the needs not necessary all features.
+The mvno-session-api A and mvno-session-api B can have totaly different contracts/swaggers.
+All operator-mvno-api must expose some methods like OpenSession(string source, string password, TimeSpan renewalExpirationTimeout /* throw exception if it's greater the timeout settings from the registry or localsettings */)  and CloseSession() methods.
 
 # operator.administration.front
-Reprensent a web front used by telecom operator staff for administration. This front make http calls to internal web api, for configuration, viewing status, view logs, changing customers settings, maintenance ...
+Reprensent a web front used by telecom operator staff for administration.
+This front make http calls to internal web api, for:
+ * configuration
+ * viewing status
+ * view logs
+ * changing customers properties
+ * add new customers
+ * maintenance 
+ * ...
 
-Mvno will not have access to it.
+Mvno partenairs will not have access to it from mvno-api.
 
 # operator-identity-api
 Authenticate api and users, deliver permissions.
 
+# operator-cli
+Console application used to
+ * send command to grid
+ * making crud operations
+ * query node status
+ * getting logs
+ * deactivate a grid-node
+ * registerNode
+ * changing node settings
+ * creating a transaction store in the memory pool
+ * cancel a transactions
+ * import/export datastore contents
+ * etc... 
+
 # operator-datastore-api
-Store entities using a mongodb.
+Store entities and settings using a mongodb in a single place. One datastore per environnement DEV,PROD,etc... for failover and restoration and backup.
+
+
+# operator-memory-pool-api
+In case of bulk commands, the memory-pool store transactions including the status of each steps. Transaction represent the commands/workflow to execute. Each transaction store in the memory-pool is just object with a id, a type, a list of step with status, and the transaction settings.
+the memory pool can be used to store any kind of objects
+structure
+
+~~~
+ [application-source|application-type|time-stamp|object-type|payload|state]
+~~~
+
+the state are used to mark the object for deletion,or anything
+
+# operator-transaction-runner-api
+this api peek a transaction, play a transaction, pause, restart a transaction commands, the transaction can be:
+ * a class
+ * a class load on different assembly
+ * a script
+
+Depending the implementation of transaction-workflow, it can a class a script that make http call on web-api, a store the results/status/errors, etc... the transaction can implement retries mecanism.
+If a failure occurs on this api, when restarting this api, we can restore the position of the transaction, and continue the process.
 
 # operator-grid-api
 Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
-It can send event to other api when receiving a commands. It used an internal scheduler or an operator-scheduler-api to repeat commands to the node until it succeed.
-the operator-grid--scheduler-api can repeat and used undefinitely or a max counter if it it reach it can report an emergency error and stop depending to the command settings
-if the operator-grid-api can not join the operator-grid-scheduler-api it can enter into a fail over mode and switch and select a next to a operator-grid-scheduler-api from a list where the list is stored on the operator-datastore-api entity
-no MOM is used, but commands and query to this api are persisted into it's own db which are not represented. this api must expose resgisterNode and unregisterNode
-grid-api must view as entity stored in the database.
+No MOM is used here: events driven are the requests sended by mvno-api or transaction-api or the adminstration-front.
+This api must expose resgisterNode and unregisterNode
+grid-api must have it'on entity stored into the datastore.
 
 # operator-grid-node-api
 Translate incomming commands to telecom infra and communication provide metrics.
 
-# operator-cli
-Console application used to send command to grid, making crud operations, view status, viewing api logs, deactivate a grid-node, cancel commands, registerNode, etc... 
-
-# operator-mvno-cli
-Console application used disable/enable session, viewing actives sessions, changing api settings, starting session api, etc... 
-
-# strucuture
-This diagram represent a structure including a custom session and expose methods needed a particular mvno.
-
-```
-
- <->   operator-identity-api -------------OR------------------+
-              |                                               |
- <->    my-virtual-operator-session-api              operator-session-api
-              |                                               |
-              +---> datastore-api                             +---> datastore-api
-              +---> grid-api                                  +---> grid-api
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-                      +---> node-api -> cœur de réseau               +---> ...
-
-```
-
-
-Using single db ou multiple db ?
- -> use MongoDb or Sql ?
-Use two directory ? public authen and internal authen ? -> find something better
- -> internal directory will use rosyln for creating dynamic entities used by mvno-session-api ? 
-     -> search for existing db patterns before
-Replace and eventing api + event persistance and remove logging api
-
+# Temp
 Addinng a telecom.sdk ?
-
 Add elastic search for telemetry ? do we need that ? with eventing-api we build stats.
 find something about a web compiler, or web clr
