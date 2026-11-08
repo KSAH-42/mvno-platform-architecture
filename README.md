@@ -126,6 +126,10 @@ Console application used control telecom infra by making only http calls. It can
  * cancel a transaction
  * pause a transaction, even rollback a transaction (a transaction contains a list of steps and the step class will expose a method execute and a method call rollback, we can it forward for executing and moving backward on the collection and call the rollback methods)
  * import/export datastore contents
+ * create SIM
+ * create subscriber
+ * deactivate SIM
+ * setUserMobileBandwith
  * etc... 
 
 # operator-datastore-api
