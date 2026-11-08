@@ -24,7 +24,7 @@ This repository present a full web new design for an IT system between mvno and 
      ║          .           |                       .         ║    |         +------------------------------+
      ║          .           |                       .         ║    |                     |
      ║          .           |                       .         ║    |         +------------------------------+      +---------------------------------------+
- mvno-calls     .  +-----------------------------+  .         ║    |-------▸ | operator-memory-pool.api     | ◂--- | operator-transaction-runner-api       |
+ mvno-calls     .  +-----------------------------+  .         ║    |-------▸ | operator-memory-pool.api     | ◂--- | operator-transaction-pool-api         |
  ----║--------▸ .  | operator-mvno-api           |  . --------║----+         | store: scripts, objects,etc. |      +---------------------------------------+
  ◂---║--------- .  |                             |  .         ║    |         +------------------------------+
      ║          .  +-----------------------------+  .         ║    |                     |
@@ -143,7 +143,7 @@ structure
 
 the state are used to mark the object for deletion,or anything
 
-# operator-transaction-runner-api
+# operator-transaction-pool-api
 this api peek a transaction, play a transaction, pause, restart a transaction commands, the transaction can be:
  * a class
  * a class load on different assembly
