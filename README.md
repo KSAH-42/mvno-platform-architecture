@@ -114,7 +114,7 @@ Mvno partenairs will not have access to it from mvno-api.
 Authenticate api and users, deliver permissions.
 
 # operator-cli
-Console application used control telecom infra by making only hhtp calls. It can do the following tasks:
+Console application used control telecom infra by making only http calls. It can do the following tasks:
  * send command to grid
  * making crud operations
  * query node status
