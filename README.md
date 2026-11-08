@@ -75,12 +75,14 @@ This repository present a new design for an IT system between mvno and telecom i
 ~~~
 
 # operator-mvno-cli
-Console application used disable/enable session, changing registry configuration or api config.
-Querying the status of active session.
-Querying the status of mnvo-api
-Enabling/disabling mnvo-api
-Changing token renewal timeout
-Send a request to a mvno-api for testing
+Console application used for:
+ * disable/enable session
+ * changing registry configuration or api config
+ * querying the status of active session
+ * querying the status of mnvo-api
+ * enabling/disabling mnvo-api
+ * changing token renewal timeout
+ * send a request to a mvno-api
 
 # operator-mvno-registry-api
 Main entrance authenticate mvnno an redirect to the rigth api.
