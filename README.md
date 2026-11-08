@@ -31,7 +31,7 @@ This repository present a new design for an IT system between mvno and telecom i
  ◂---║--------- .  |                             |  .         ║    |         +------------------------------+
      ║          .  +-----------------------------+  .         ║    +-------▸ | operator-grid.api            | // located in France (outside Europe)
      ║          .           |                       .         ║    |         +------------------------------+
-     ║          .           |                       .         ║    |                            ▼  ▲
+     ║          .           |                       .         ║    |                     |      ▼  ▲
  mvno-calls     .  +-----------------------------+  .         ║    |               +------------------------+
  ----║--------▸ .  | operator-mvno-api.DefTelecom|  .         ║    |               | operator-grid-node-api |   <-------->  Mobile network core
  ◂---║--------- .  |                             |  . --------║----+               +------------------------+
@@ -49,11 +49,11 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                                                        ║    |               +------------------------+
      ║                                                        ║    |               | operator-grid-node-api |   <-------->  Small Mobile network core
      ║                                                        ║    |               +------------------------+
-     ║                                                        ║    |
+     ║                                                        ║    |                     |
      ║                                                        ║    |         +------------------------------+
      ║                                                        ║    +-------▸ | operator-grid.api            | // located in France (outside Europe)
      ║                                                        ║              +------------------------------+
-     ║                                                        ║                                 ▼  ▲
+     ║                                                        ║                          |      ▼  ▲
      ║                                                        ║                    +------------------------+
      ║                                                        ║                    | operator-grid-node-api |   <-------->  Mobile network core
      ║                                                        ║                    +------------------------+
