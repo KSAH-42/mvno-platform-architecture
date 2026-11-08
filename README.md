@@ -1,5 +1,5 @@
 # mvno-platform-architecture (Draft)
-This repository present a new design for an IT system between mvno and telecom infra
+This repository present a full web new design for an IT system between mvno and telecom infra based
 
 ~~~
                          T E L E C O M    O P E R A T O R    P L A T F O R M    F O R     M V N O S
