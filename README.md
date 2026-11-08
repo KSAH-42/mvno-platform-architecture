@@ -141,7 +141,7 @@ structure
  [application-source|application-type|time-stamp|object-type|payload|state]
 ~~~
 
-the state are used to mark the object for deletion,or anything
+the state are used to mark the object for deletion,or anything.
 
 # operator-transaction-pool-api
 this api peek a transaction, play a transaction, pause, restart a transaction commands, the transaction can be:
@@ -165,3 +165,4 @@ Translate incomming commands to telecom infra and communication provide metrics.
 Addinng a telecom.sdk ?
 Add elastic search for telemetry ? do we need that ? with eventing-api we build stats.
 find something about a web compiler, or web clr
+use transaction catalog ?
