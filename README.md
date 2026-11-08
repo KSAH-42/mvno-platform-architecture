@@ -16,7 +16,7 @@ This repository present a new design for an IT system between mvno and telecom i
      ║                      |                                 ║                          |
      ║                      |                                 ║                          |
      ║                      |                                 ║              +------------------------------+      +---------------------------------------+
-     ║                      |                                 ║              | operator-cli                 |      | operator-cli-gr / or operator-cli-api | 
+     ║                      |                                 ║              | operator-cli                 |      | operator-cli-gr                       | 
      ║                      |                                 ║              +------------------------------+      +---------------------------------------+
      ║                      |                                 ║                          |
      ║          . . . . . . . . . . . . . . . . . . .         ║              +------------------------------+ 
