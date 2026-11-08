@@ -88,6 +88,7 @@ The mvno-api can be located in France, or elsewhere.
 
 # operator-mvno-api
 Dedicated implementation for a mvno partenair as a web api.
+Provide a better isolation, we can add new mvno-partenar without interruption
 Mvno partenair make http calls to this api.
 It can handle  N number of internal memory session instances. 
 It expose commands and queries, only the needs not necessary all features.
