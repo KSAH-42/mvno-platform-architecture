@@ -135,7 +135,7 @@ Console application used control telecom infra by making only http calls. It can
 ~~~
  operator-cli.exe logon -u "admin" -p "password"
  operator-cli.exe network enable-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2"
- operator-cli.exe network set-cellular-bandwith --id ""B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value 12340000
+ operator-cli.exe network set-cellular-bandwith --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value 12345000
  operator-cli.exe logout
 ~~~
 
