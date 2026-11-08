@@ -182,3 +182,4 @@ Add elastic search for telemetry ? do we need that ? with eventing-api we build 
 fuse the operator-transaction-pool-api and operator-memory-pool-api ???
 find something about a web compiler, or web clr
 user can select a transaction from a catalog / datastore ?
+the agent-api for deployment can use os containerization sdk ?
