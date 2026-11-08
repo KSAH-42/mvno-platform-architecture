@@ -141,7 +141,7 @@ Console application used control telecom infra by making only http calls. It can
  operator-cli.exe logout
 ~~~
 
-a package repository is not present, the grid-api must a controller with several methode download nodes, and install node.
+a package repository is not present in the diagram. So the grid-api must have controller with several methods downloading  and install node.
 
 # operator-datastore-api
 Store entities and settings using a mongodb in a single place. One datastore per environnement DEV,PROD,etc... for failover and restoration and backup.
