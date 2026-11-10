@@ -179,7 +179,6 @@ Translate incomming commands to telecom infra and communication provide metrics.
 # Temp
 Addinng a telecom.sdk ?
 Add elastic search for telemetry ? do we need that ? with eventing-api we build stats.
-fuse the operator-transaction-pool-api and operator-memory-pool-api ???
-find something about a web compiler, or web clr
-user can select a transaction from a catalog / datastore ?
+fuse the operator-transaction-pool-api and operator-memory-pool-api ?
+ -> so no, we can have a data system that write a data for migration and let trigger a migration transaction that can be controlled step by step with a completion percentage. juste make clean seperation of concerns. the memory-pool can be used by different api. 
 the agent-api for deployment can use os containerization sdk ?
