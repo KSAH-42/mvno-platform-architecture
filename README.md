@@ -56,8 +56,8 @@ This repository present a full web new design for an IT system between mvno and 
      ║          .           |                       .         ║    |               +------------------------+
      ║          .           |                       .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
 external-calls  . +-------------------------------+ .         ║    |               +------------------------+
---------------▸ . | operator-data-factory-api     | . --------║----+               | operator-grid-node-api |   ◂--------▸  Small Mobile network core
-◂---║---------  . |                               | .         ║    |               +------------------------+
+-----║--------▸ . | operator-data-factory-api     | . --------║----+               | operator-grid-node-api |   ◂--------▸  Small Mobile network core
+◂----║--------  . |                               | .         ║    |               +------------------------+
      ║          . +-------------------------------+ .         ║    |                     
      ║          .                                   .         ║    |
      ║          .....................................         ║    |         +------------------------------+
