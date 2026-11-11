@@ -142,6 +142,8 @@ Console application used control telecom infra by making only http calls. It can
  * setUserMobileBandwith
  * etc... 
 
+In C#, the CLI can we be easy to write, you can use Microsoft System.CommandLine and use Gof Patterns (Command Pattern), or reuse a simalar of the CommandHandler used in CQRS (note: cqrs is not the choice for a cli, but peek up some idea from this pattern).
+
 ~~~
  operator-cli.exe logon -u "admin" -p "password"
  operator-cli.exe grid create-node --id "1234465B-1888-48E8-BB43-181D2C1F682F" --type rabbit.telecom/1.1
