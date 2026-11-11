@@ -1,4 +1,4 @@
-# mvno-platform-architecture (Draft)
+# mvno-platform-architecture (DRAFT)
 This repository present a full web new design for an IT system between mvno and telecom infra
 
 ~~~
