@@ -195,7 +195,9 @@ In this case we can have an operator-data-factory-api that write only to the ope
 
 ~~~
  operator-cli.exe datastore run-migration --target DATASTORE~1
+~~~
 or
+~~~
  operator-cli.exe datastore run-migration --target DATASTORE[1]
 ~~~
 
