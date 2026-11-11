@@ -164,7 +164,7 @@ it may be possible to introduce an operator-dispatcher-api reserved for publish/
 the cli must expose messaging features
 ~~~
  operator-cli.exe send-message --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" \
-   --topic "EVENT/NETWORK/BANDWIDTH/CHANGED" \
+   --topic "event.bandwith.changed" \
    --message \
     {
         "node": "B8D531EB-18E8-47E5-B4B3-1D218C681FF2"
