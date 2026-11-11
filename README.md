@@ -115,6 +115,8 @@ Authenticate api and users, deliver permissions. Public api must authenticate to
  * send event to any application using http webhooks: sendevent method will used a http client and post a message, or enqueue a message
  * receive event using long pooling mecanism: by making http call on controller and pass a timeout value, the controller will block on concurrent queue until an event(s) as enqueue
 
+it may be possible to introduce an operator-event-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used signal-r for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
+
 This api provide registration mecanism to the apis. no external api, will be able to discovered internal/systems api through the operator-registry-api. The directory must also expose something to allow to retrieve the list of datastore ordered by a priority or something else.
 
 # operator-cli
