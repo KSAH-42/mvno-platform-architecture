@@ -120,7 +120,7 @@ Mvno partenairs will not have access to it from mvno-api.
 # operator-identity-api
 Authenticate api and users, deliver permissions. Public api must authenticate to this api. It's a kind of directory, but it doesn't persist or managed business entities, only managed authentication, and system resources. Business entities are store on the datastore api.
 
-This api provide also registration mecanism for apis. No external api, will be able to discovered internal/systems api through the operator-registry-api. This api must expose something to allow to retrieve the list of datastores ordered by a priority or something else that allow to discover the main datastore. An api can retrieve the list of datastore and move to the next datastore the current datastore is not available. Or it may be possible to introduce an api gateway that switch the datastore A to datastore B.
+This api provide also registration mecanism for apis. No external api, will be able to discovered internal/systems api through the operator-registry-api. This api must expose something to allow to retrieve the list of datastores ordered by a priority or something else that allow to discover the main datastore. An api can retrieve the list of datastore and move to the next datastore the current datastore is not available. Or it may be possible to introduce an api gateway that switch the datastore A to datastore B. The list will be enought for most a cases.
 
 # operator-cli
 Console application used to control telecom infrastructure by making only http calls. It can do the following tasks:
