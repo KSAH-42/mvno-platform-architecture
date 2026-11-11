@@ -123,7 +123,7 @@ Authenticate api and users, deliver permissions. Public api must authenticate to
 This api provide also registration mecanism for apis. No external api, will be able to discovered internal/systems api through the operator-registry-api. This api must expose something to allow to retrieve the list of datastores ordered by a priority or something else that allow to discover the main datastore. An api can retrieve the list of datastore and move to the next datastore the current datastore is not available. Or it may be possible to introduce an api gateway that switch the datastore A to datastore B. The list will be enought for most cases.
 
 # operator-cli
-Console application used to control telecom infrastructure by making only http calls. It can do the following tasks:
+Console application used to control telecom infrastructure by making only http calls using command line. It can do the following tasks:
  * send command to grid
  * making crud operations
  * query node status
