@@ -221,6 +221,9 @@ This api must expose method to run or cancel a migration and configure the how t
 
 In this case we can have an operator-data-factory-api that write only to the operator-memory-pool-api. and the migration-api will read only on the memory-pool
 
+# operator-data-factory-api
+It's an example of an external system used to publish data, in this case it publish data migration and write on the memory-pool-api.
+
 # operator-grid-api
 Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
 No MOM is used here: events driven are the requests sended by mvno-api or transaction-api or the adminstration-front.
