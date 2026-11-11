@@ -242,6 +242,8 @@ An example
  }
 ~~~
 
+the main challenge is about data modelisation, it could be nice that identity api will persiste resource object and contains a property for saving the entity id, or something like uri this resource object will expose a permissions collection property or role identifier, or something else.
+
 the memory-pool-api must controlled by permissions on create/remove/read/write/update.
 
 The cli can expose features
