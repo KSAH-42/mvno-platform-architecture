@@ -201,6 +201,11 @@ or
  operator-cli.exe datastore run-migration --target DATASTORE[1]
 ~~~
 
+and only the order and the content of the main datastore to keeps previous data
+~~~
+ operator-cli.exe datastore swaap --from DATASTORE[1] --to DATASTORE[0]
+~~~
+
 # operator-transaction-pool-api
 This api used to control a transaction by making:
  * start a transaction
