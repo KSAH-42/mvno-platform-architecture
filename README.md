@@ -146,7 +146,7 @@ Console application used control telecom infra by making only http calls. It can
  operator-cli.exe grid start-node --id "1234465B-1888-48E8-BB43-181D2C1F682F"
  operator-cli.exe network enable-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --node 1234465B-1888-48E8-BB43-181D2C1F682F
  operator-cli.exe network set-cellular-bandwith --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value 12345000 --node 1234465B-1888-48E8-BB43-181D2C1F682F
-operator-cli.exe logout
+ operator-cli.exe logout
 ~~~
 
 a package repository is not present in the diagram. So the grid-api must have controller with several methods downloading  and install node. or even the cli must communicate with a hidden agent-api.
