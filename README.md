@@ -203,7 +203,7 @@ or
 
 and only the order and the content of the main datastore to keeps previous data
 ~~~
- operator-cli.exe datastore swaap --from DATASTORE[1] --to DATASTORE[0]
+ operator-cli.exe datastore swap --from DATASTORE[1] --to DATASTORE[0]
 ~~~
 
 # operator-transaction-pool-api
