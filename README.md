@@ -124,7 +124,7 @@ This api provide also registration mecanism for apis. No external api, will be a
 
 # operator-cli
 Console application used to control telecom infrastructure by making only http calls using command line. It can do the following tasks:
- * send command to grid
+ * send command to the grid
  * making crud operations
  * query node status
  * getting logs
