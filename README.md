@@ -178,7 +178,7 @@ In case of bulk commands, the memory-pool store transactions including the statu
 the memory pool can be used to store any kind of objects
 structure
 
-The example:
+An example
 ~~~  
  public class MemoryBlock
  {
@@ -192,6 +192,7 @@ The example:
  }
 ~~~
 
+this datastructure controller as directory resources with permissions (Readers/writers can be located on the directory).
 the memory-pool-api must secure access on read / write to deny an api to remove/read/write an existing block reserved by an application.
 
 The cli can expose features
