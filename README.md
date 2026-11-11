@@ -161,7 +161,7 @@ the event must be persisted. This api must be used only to status changed, confi
 
 it may be possible to introduce an operator-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used signal-r for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
 
-the cli must expose messaging features, in this example if the target is not specified , we broadcast the message
+the cli can expose messaging features, in this example if the target is not specified , we broadcast the message
 ~~~
  operator-cli.exe send-message --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" \
    --topic "event.bandwith.changed" \
@@ -180,6 +180,22 @@ and may predifined message type like
 # operator-datastore-api
 Store entities and settings using a mongodb in a single place. One datastore per environnement DEV,PROD,etc... for failover and restoration and backup.
 for sensitive data like credit card, the real value must be store on operator-vault-api which are not represent here. the CreditCardEntity can expose a kind of id-pointer to the vault or something similar.
+
+the cli can expose features
+
+~~~
+ operator-cli.exe datastore backup --file "my-backup.backup"
+~~~
+
+# operator-datastore-migration-api
+
+This api must expose method to run or cancel a migration and configure the how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings. For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory bocks passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will completed, it pusblish a message to the dispatcher and a migration result status on saved on the datastore. From the operator-administration-api, people can this view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. 
+
+In this case we can have an operator-data-factory-api that write only to the operator-memory-pool-api. and the migration-api will read only on the memory-pool
+
+~~~
+ operator-cli.exe datastore-migration run --target DATASTORE~1 
+~~~
 
 # operator-transaction-pool-api
 This api used to control a transaction by making:
@@ -222,12 +238,6 @@ The cli can expose features
 ~~~
   operator-cli.exe memory-pool clear
 ~~~
-
-# operator-datastore-migration-api
-
-This api must expose method to run or cancel a migration and configure the how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings. For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory bocks passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will completed, it pusblish a message to the dispatcher and a migration result status on saved on the datastore. From the operator-administration-api, people can this view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. 
-
-In this case we can have an operator-data-factory-api that write only to the operator-memory-pool-api. and the migration-api will read only on the memory-pool
 
 # operator-data-factory-api
 It's an example of an external system used to publish data, in this case it publish data migration and write on the memory-pool-api.
