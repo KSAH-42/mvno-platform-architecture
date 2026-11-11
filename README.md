@@ -194,7 +194,7 @@ This api must expose method to run or cancel a migration and configure the how t
 In this case we can have an operator-data-factory-api that write only to the operator-memory-pool-api. and the migration-api will read only on the memory-pool
 
 ~~~
- operator-cli.exe datastore-migration run --target DATASTORE~1 
+ operator-cli.exe datastore run-migration --target DATASTORE~1 
 ~~~
 
 # operator-transaction-pool-api
