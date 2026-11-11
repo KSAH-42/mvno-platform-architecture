@@ -206,8 +206,7 @@ An example
  }
 ~~~
 
-this datastructure an identity resources with permissions (Readers/writers can be located on the identity-api).
-the memory-pool-api must secure access on read / write to deny an api to remove/read/write an existing block reserved by an application.
+the memory-pool-api must controlled by permissions on create/remove/read/write/update.
 
 The cli can expose features
 
