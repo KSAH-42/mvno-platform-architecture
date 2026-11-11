@@ -141,7 +141,7 @@ Console application used to control telecom infrastructure by making only http c
  * setUserMobileBandwith
  * etc... 
 
-In C#, the CLI can we be easy to write, you can use Microsoft System.CommandLine and use Gof Patterns (Command Pattern), or reuse a simalar of the CommandHandler used in CQRS (note: cqrs is not the choice for a cli, but peek up some idea from this pattern) and a make a series of http call inside a command object, and the command can expose a validation method throw exception in case of missing parameter, invalid parameters, and the execute method use http client with it's factory or consumme a service interface that make http calls.
+In C#, the CLI can we be easy to write, you can use Microsoft System.CommandLine and use Gof Patterns (Command Pattern), or reuse somethinh similar from the CommandHandler used in CQRS (cqrs may not the recommended choice for a cli, but you can peek some idea from it) and make a series of http call inside a command object, and the command expose a validation method that throw exception in case of missing parameter, invalid parameters, and the execute method by the HttpClient with it's factory or consumme a service interface that make http calls internaly. 
 
 ~~~
  operator-cli.exe logon -u "admin" -p "password"
