@@ -163,7 +163,7 @@ This api used to publish/subscribe to send and receive event for applications, i
 
 the event must be persisted. This api must be used only to status changed, configuration changed. And never to send a action to the grid-api. the grid-api can be notified to changed. the mvno-api must never send a message to this api for sending or broacast an action to all grid-api. the mvno-api must get the list of grid-api and send or not a request to a grid-api.
 
-it may be possible to introduce an operator-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used signal-r for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
+it may be possible to introduce an operator-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used Microsoft Signal-R for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
 
 the cli can expose messaging features, in this example if the target is not specified , we broadcast the message
 ~~~
