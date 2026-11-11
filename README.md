@@ -100,7 +100,7 @@ Provide a better isolation, we can add new mvno-partenar without interruption
 Mvno partenair make http calls to this api.
 It can handle  N number of internal memory session instances. 
 It expose commands and queries, only the needs not necessary all features.
-All operator-mvno-api must used HttpAuthenticateHeader (and use the appropriate scheme, or a support a custom scheme that can be different to public api) and HttpAuthorizationHeader.
+All operator-mvno-api must used HttpAuthenticateHeader (and use the appropriate scheme, or a support a custom scheme that can be different to public api) and HttpAuthorizationHeader. It may be possible that the mvno-api will not get the endpoints of some-api like the operator-dispatch-api.
 
 # operator.administration.front
 Reprensent a web front used by telecom operator staff for administration.
