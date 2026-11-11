@@ -21,7 +21,7 @@ This repository present a full web new design for an IT system between mvno and 
      ║                      |                                 ║    |         +------------------------------+ 
      ║                      |                                 ║    |                     | 
      ║                      |                                 ║    |         +------------------------------+ 
-     ║                      |                                 ║    |         | operator-disptatcer-api      | 
+     ║                      |                                 ║    |         | operator-dispatcher-api      | 
      ║                      |                                 ║    |         +------------------------------+ 
      ║                      |                                 ║    |                     |
      ║          . . . . . . . . . . . . . . . . . . .         ║    |         +------------------------------+      +---------------------------------------+
