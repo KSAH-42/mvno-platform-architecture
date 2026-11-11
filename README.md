@@ -80,7 +80,7 @@ external-calls  . +-------------------------------+ .         ║    |          
 
 ~~~
 
-The main idea it used communicated using http between processes and keep implementatation of each component simple and reduce projects dependencies on microservice projects. 
+The main idea it use to communicate using http between processes and keep implementation of each component simple and reduce common dependencies on microservice projects. 
 
 # operator-registry-cli
 Console application used for:
@@ -94,7 +94,7 @@ Console application used for:
  * send a request to a mvno-api
 
 # operator-registry-api
-Main entrance authenticate external applications using http will be redirected to the rigth api. It used to discover api depending to it's api key. Public apis can be located any where.
+Main entrance to authenticate external applications, it will redirected to the rigth public api. It used to discover api depending to it's api key. Public apis can be located any where. And it may possible to a partenair to retrieve a list of endpoints.
 
 # operator-mvno-api
 Dedicated implementation for a mvno partenair as a web api.
@@ -105,7 +105,7 @@ It expose commands and queries, only the needs not necessary all features.
 All operator-mvno-api must used HttpAuthenticateHeader (and use the appropriate scheme, or a support a custom scheme that can be different to public api) and HttpAuthorizationHeader. It may be possible that the mvno-api will not get the endpoints of some-api like the operator-dispatch-api.
 
 # operator.administration.front
-Reprensent a web front used by telecom operator staff for administration.
+Represent a web front used by telecom operator staff for administration.
 This front make http calls to internal web api, for:
  * configuration
  * viewing status
@@ -120,11 +120,10 @@ Mvno partenairs will not have access to it from mvno-api.
 # operator-identity-api
 Authenticate api and users, deliver permissions. Public api must authenticate to this api. It's a kind of directory, but it doesn't persist or managed business entities, only managed authentication, and system resources. Business entities are store on the datastore api.
 
-This api provide also registration mecanism for apis. No external api, will be able to discovered internal/systems api through the operator-registry-api. This api must expose something to allow to retrieve the list of datastore ordered by a priority or something else.
-
+This api provide also registration mecanism for apis. No external api, will be able to discovered internal/systems api through the operator-registry-api. This api must expose something to allow to retrieve the list of datastores ordered by a priority or something else that allow to discover the main datastore. An api can retrieve the list of datastore and move to the next datastore the current datastore is not available. Or it may be possible to introduce an api gateway that switch the datastore A to datastore B.
 
 # operator-cli
-Console application used control telecom infra by making only http calls. It can do the following tasks:
+Console application used to control telecom infrastructure by making only http calls. It can do the following tasks:
  * send command to grid
  * making crud operations
  * query node status
@@ -153,7 +152,7 @@ In C#, the CLI can we be easy to write, you can use Microsoft System.CommandLine
  operator-cli.exe logout
 ~~~
 
-a package repository is not present in the diagram. So the grid-api must have controller with several methods downloading  and install node. or even the cli must communicate with a hidden agent-api.
+a package repository is not present in the diagram. So the grid-api must have a controller with several methods for downloading and installing nodes. or even the cli must communicate with a hidden agent-api.
 
 # operator-dispatch-api
 This api used to publish/subscribe to send and receive event for applications, it can expose the following event handling mecanisms:
