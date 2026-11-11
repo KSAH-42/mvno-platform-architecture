@@ -21,7 +21,7 @@ This repository present a full web new design for an IT system between mvno and 
      ║                      |                                 ║    |         +------------------------------+ 
      ║                      |                                 ║    |                     | 
      ║                      |                                 ║    |         +------------------------------+ 
-     ║                      |                                 ║    +-------▸ | operator-dispatcher-api      | 
+     ║                      |                                 ║    +-------▸ | operator-dispatch-api        | 
      ║                      |                                 ║    |         +------------------------------+ 
      ║                      |                                 ║    |                     |
      ║          . . . . . . . . . . . . . . . . . . .         ║    |         +------------------------------+      +---------------------------------------+
@@ -146,19 +146,12 @@ Console application used control telecom infra by making only http calls. It can
  operator-cli.exe grid start-node --id "1234465B-1888-48E8-BB43-181D2C1F682F"
  operator-cli.exe network enable-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --node 1234465B-1888-48E8-BB43-181D2C1F682F
  operator-cli.exe network set-cellular-bandwith --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value 12345000 --node 1234465B-1888-48E8-BB43-181D2C1F682F
-operator-cli.exe send-message --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" \
-   --topic "EVENT/NETWORK/BANDWIDTH/CHANGED" \
-   --message \
-    {
-        "node": "B8D531EB-18E8-47E5-B4B3-1D218C681FF2"
-        "bandwith": "12345000",
-    }
 operator-cli.exe logout
 ~~~
 
 a package repository is not present in the diagram. So the grid-api must have controller with several methods downloading  and install node. or even the cli must communicate with a hidden agent-api.
 
-# operator-dispatcher-api
+# operator-dispatch-api
 This api used to publish/subscribe to send and receive event for applications, it can expose the following event handling mecanisms:
 
  * send event to any application using http webhooks: sendevent method will used a http client and post a message, or enqueue a message
@@ -166,7 +159,23 @@ This api used to publish/subscribe to send and receive event for applications, i
 
 the event must be persisted. This api must be used only to status changed, configuration changed. And never to send a action to the grid-api. the grid-api can be notified to changed. the mvno-api must never send a message to this api for sending or broacast an action to all grid-api. the mvno-api must get the list of grid-api and send or not a request to a grid-api.
 
-it may be possible to introduce an operator-event-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used signal-r for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
+it may be possible to introduce an operator-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used signal-r for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
+
+the cli must expose messaging features
+~~~
+ operator-cli.exe send-message --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" \
+   --topic "EVENT/NETWORK/BANDWIDTH/CHANGED" \
+   --message \
+    {
+        "node": "B8D531EB-18E8-47E5-B4B3-1D218C681FF2"
+        "bandwith": "12345000",
+    }
+~~~
+
+and may predifined message type like 
+~~~
+ operator-cli.exe send-message --tyoe-bandwih-changed --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" --Node  "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value "12345000"
+~~~
 
 # operator-datastore-api
 Store entities and settings using a mongodb in a single place. One datastore per environnement DEV,PROD,etc... for failover and restoration and backup.
