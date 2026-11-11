@@ -42,8 +42,8 @@ This repository present a full web new design for an IT system between mvno and 
      ║          .           |                       .         ║    |         +------------------------------+
      ║          .           |                       .         ║    |                     |      ▼  ▲
  mvno-calls     .  +-----------------------------+  .         ║    |               +------------------------+
- ----║--------▸ .  | operator-mvno-api.DefTelecom|  .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
- ◂---║--------- .  |                             |  . --------║----+               +------------------------+
+ ----║--------▸ .  | operator-mvno-api.DefTelecom|  . --------║----+               | operator-grid-node-api |   ◂--------▸  Mobile network core
+ ◂---║--------- .  |                             |  .         ║    | +------------------------+
      ║          .  +-----------------------------+  .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
      ║          .                                   .         ║    |               +------------------------+
      ║          . . . . . . . . . . . . . . . . . . .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
