@@ -232,9 +232,9 @@ An example
  {
      public string Id { get; set; }
      public string Type { get; set; }
-     public string Owner { get; set; }
-     public string[] Readers { get; set; }
-     public string[] Writers { get; set; }
+     public string Owner { get; set; }      // must not be expose the by api it should expose by the identity api
+     public string[] Readers { get; set; }  // must not be expose the by api it should expose by the identity api
+     public string[] Writers { get; set; }  // must not be expose the by api it should expose by the identity api
      public Dictionary<string,string> Headers { get; set; }
      public Stream Content { get; set; }
  }
