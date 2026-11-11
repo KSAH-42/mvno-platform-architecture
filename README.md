@@ -1,5 +1,5 @@
 # mvno-platform-architecture (DRAFT)
-This repository present a full web new design for an IT system between mvno and telecom infra
+This repository present a full web new design for an IT system between mvno and telecom infra.
 
 ~~~
                          T E L E C O M    O P E R A T O R     P L A T F O R M     F O R     M V N O S
@@ -79,6 +79,8 @@ external-calls  . +-------------------------------+ .         ║    |          
      ║                                                        ║                    +------------------------+
 
 ~~~
+
+The main idea it used communicated using http between processes and keep implementatation of each component simple and reduce projects dependencies on microservice projects. 
 
 # operator-registry-cli
 Console application used for:
