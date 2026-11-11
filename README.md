@@ -177,7 +177,7 @@ the cli can expose messaging features, in this example if the target is not spec
 
 and may predifined message type like 
 ~~~
- operator-cli.exe send-message --tyoe-bandwih-changed --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" --Node  "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value "12345000"
+ operator-cli.exe send-message --type-bandwih-changed --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" --Node  "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value "12345000"
 ~~~
 
 # operator-datastore-api
