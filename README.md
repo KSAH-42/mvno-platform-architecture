@@ -116,9 +116,9 @@ This front make http calls to internal web api, for:
 Mvno partenairs will not have access to it from mvno-api.
 
 # operator-identity-api
-Authenticate api and users, deliver permissions. Public api must authenticate to the directory. This process must NOT persist entities, only managed authentication, and resources
+Authenticate api and users, deliver permissions. Public api must authenticate to this api. It's a kind of directory, but it doesn't persist or managed business entities, only managed authentication, and system resources. Business entities are store on the datastore api.
 
-This api provide registration mecanism to the apis. no external api, will be able to discovered internal/systems api through the operator-registry-api. The directory must also expose something to allow to retrieve the list of datastore ordered by a priority or something else.
+This api provide also registration mecanism for apis. No external api, will be able to discovered internal/systems api through the operator-registry-api. This api must expose something to allow to retrieve the list of datastore ordered by a priority or something else.
 
 
 # operator-cli
@@ -206,7 +206,7 @@ An example
  }
 ~~~
 
-this datastructure controller as directory resources with permissions (Readers/writers can be located on the directory).
+this datastructure an identity resources with permissions (Readers/writers can be located on the identity-api).
 the memory-pool-api must secure access on read / write to deny an api to remove/read/write an existing block reserved by an application.
 
 The cli can expose features
@@ -217,7 +217,7 @@ The cli can expose features
 
 # operator-datastore-migration-api
 
-This api must expose method to run or cancel a migration and configure the how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings. For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory bocks passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will completed, it pusblish a message to directory and a migration result status on saved on the datastore. From the operator-administration-api, people can this view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the directory api. 
+This api must expose method to run or cancel a migration and configure the how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings. For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory bocks passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will completed, it pusblish a message to the dispatcher and a migration result status on saved on the datastore. From the operator-administration-api, people can this view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. 
 
 In this case we can have an operator-data-factory-api that write only to the operator-memory-pool-api. and the migration-api will read only on the memory-pool
 
