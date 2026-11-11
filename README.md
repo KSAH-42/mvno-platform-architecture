@@ -161,7 +161,7 @@ the event must be persisted. This api must be used only to status changed, confi
 
 it may be possible to introduce an operator-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used signal-r for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
 
-the cli must expose messaging features
+the cli must expose messaging features, in this example if the target is not specified , we broadcast the message
 ~~~
  operator-cli.exe send-message --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" \
    --topic "event.bandwith.changed" \
