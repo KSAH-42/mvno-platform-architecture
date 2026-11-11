@@ -194,10 +194,11 @@ the cli can expose features
 
 # operator-datastore-migration-api
 
-This api must expose method to run or cancel a migration and configure the how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings. For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory bocks passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will completed, it pusblish a message to the dispatcher and a migration result status on saved on the datastore. From the operator-administration-api, people can this view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. This api can also detected duplocated commands send to the grid instead of a direct migration. It (or the tranasction-pool-api) will build transactions at the end or on-demand.
+This api must expose method to run or cancel a migration and configure how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings, etc... For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory blocks id passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will complete, it pusblish a message to the dispatcher and a migration result status is saved on the datastore. From the operator-administration-api, people can view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. This api can also avoid duplicated commands send in case where a migration process migrate at runtime by reading block after block. So, at the end this api (or the transaction-pool-api recommanded) will build / or take MigrationTransactionEntity and launch on-event or on-demand.
 
-In this case we can have an operator-data-factory-api that write only to the operator-memory-pool-api. and the migration-api will read only on the memory-pool
+For instance, we can have an operator-data-factory-api who write only on the operator-memory-pool-api. And the migration-api will read only on the memory-pool until all has been written.
 
+running the migration with cli:
 ~~~
  operator-cli.exe datastore run-migration --target DATASTORE~1
 ~~~
@@ -206,7 +207,7 @@ or
  operator-cli.exe datastore run-migration --target DATASTORE[1]
 ~~~
 
-and change only the order and the datastore list and move the main datastore at the secondary level with modifying it's content
+Then change only the order and the datastore list and move the main datastore at the secondary level without modifying its content.
 ~~~
  operator-cli.exe datastore swap --from DATASTORE[1] --to DATASTORE[0]
 ~~~
