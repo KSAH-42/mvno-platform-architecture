@@ -9,15 +9,20 @@ This repository present a full web new design for an IT system between mvno and 
      ║         +----------------------------------+           ║              +------------------------------+
      ║                                                        ║                          |
      ║                                                        ║                          ▼
- mvno-calls    +----------------------------------+           ║              +------------------------------+
- ----║-------▸ | operator-registry-api            | ----------║------------▸ | operator-directory.api       |
+ mvno-calls    +----------------------------------+           ║              +------------------------------+   
+ ----║-------▸ | operator-registry-api            | ----------║------------▸ | operator-identity.api        |
  ◂---║-------- +----------------------------------+           ║              +------------------------------+
-     ║                      ▲                                 ║                          ▲
-     ║                      |                                 ║    +---------------------+
-     ║                      |                                 ║    |                     |
-     ║                      |                                 ║    |         +------------------------------+
-     ║                      |                                 ║    |         | operator-cli                 |
-     ║                      |                                 ║    |         +------------------------------+
+     ║                      ▲                                 ║                          ▲       
+     ║                      |                                 ║                          | 
+     ║                      |                                 ║    +---------------------+ 
+     ║                      |                                 ║    |                     | 
+     ║                      |                                 ║    |         +------------------------------+ 
+     ║                      |                                 ║    |         |       operator-cli           | 
+     ║                      |                                 ║    |         +------------------------------+ 
+     ║                      |                                 ║    |                     | 
+     ║                      |                                 ║    |         +------------------------------+ 
+     ║                      |                                 ║    |         | operator-disptatcer-api      | 
+     ║                      |                                 ║    |         +------------------------------+ 
      ║                      |                                 ║    |                     |
      ║          . . . . . . . . . . . . . . . . . . .         ║    |         +------------------------------+      +---------------------------------------+
      ║          .   mvno operator apis              .         ║    +-------▸ | operator-datastore.api       | ◂--- | operator-transaction-pool-api         |
@@ -110,14 +115,11 @@ This front make http calls to internal web api, for:
 
 Mvno partenairs will not have access to it from mvno-api.
 
-# operator-directory-api
-Authenticate api and users, deliver permissions. Public api must authenticate to the directory. This process must not persist entities, only managed authentication, persmission events handlings mecanisms:
- * send event to any application using http webhooks: sendevent method will used a http client and post a message, or enqueue a message
- * receive event using long pooling mecanism: by making http call on controller and pass a timeout value, the controller will block on concurrent queue until an event(s) as enqueue
-
-it may be possible to introduce an operator-event-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used signal-r for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
+# operator-identity-api
+Authenticate api and users, deliver permissions. Public api must authenticate to the directory. This process must NOT persist entities, only managed authentication, and resources
 
 This api provide registration mecanism to the apis. no external api, will be able to discovered internal/systems api through the operator-registry-api. The directory must also expose something to allow to retrieve the list of datastore ordered by a priority or something else.
+
 
 # operator-cli
 Console application used control telecom infra by making only http calls. It can do the following tasks:
@@ -155,6 +157,16 @@ operator-cli.exe logout
 ~~~
 
 a package repository is not present in the diagram. So the grid-api must have controller with several methods downloading  and install node. or even the cli must communicate with a hidden agent-api.
+
+# operator-dispatcher-api
+This api used to publish/subscribe to send and receive event for applications, it can expose the following event handling mecanisms:
+
+ * send event to any application using http webhooks: sendevent method will used a http client and post a message, or enqueue a message
+ * receive event using long pooling mecanism: by making http call on controller and pass a timeout value, the controller will block on concurrent queue until an event(s) as enqueue
+
+the event must be persisted. This api must be used only to status changed, configuration changed. And never to send a action to the grid-api. the grid-api can be notified to changed. the mvno-api must never send a message to this api for sending or broacast an action to all grid-api. the mvno-api must get the list of grid-api and send or not a request to a grid-api.
+
+it may be possible to introduce an operator-event-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used signal-r for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
 
 # operator-datastore-api
 Store entities and settings using a mongodb in a single place. One datastore per environnement DEV,PROD,etc... for failover and restoration and backup.
