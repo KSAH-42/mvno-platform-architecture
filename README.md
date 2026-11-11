@@ -150,6 +150,7 @@ In C#, the CLI can we be easy to write, you can use Microsoft System.CommandLine
  operator-cli.exe network register-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" 
  operator-cli.exe network enable-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --node 1234465B-1888-48E8-BB43-181D2C1F682F
  operator-cli.exe network set-cellular-bandwith --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value 12345000 --node 1234465B-1888-48E8-BB43-181D2C1F682F
+ operator-cli.exe network send-sms -id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value "my message"
  operator-cli.exe logout
 ~~~
 
