@@ -216,6 +216,12 @@ Then change only the order and the datastore list and move the main datastore at
 ~~~
 
 An audit trail table or api for the migration can also be used to reconstruct the data. Just suppose that the migration api write on the parrallel datastore, it can take while, depending the loads, and during this time crud operation can occurs on the main datastore. That's why the audit trail can be used if the migration is going up or going down. the migration api must keep and be used an cursor audit trail. we can reconstruct in up and down after completing the migration. The rectification will happens at the end the migration, and the migration api will used the cursor and move up / down. So the datastore-api need to expose method for managing cursors.
+the cli can expose features to lock and unlock datastore
+
+~~~
+ operator-cli.exe datastore --lock
+ operator-cli.exe datastore --un-lock
+~~~
 
 # operator-transaction-pool-api
 This api used to control a transaction by making:
