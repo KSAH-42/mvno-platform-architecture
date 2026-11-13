@@ -4,14 +4,17 @@ This repository present a full web new design for an IT system between mvno and 
 ~~~
                          T E L E C O M    O P E R A T O R     P L A T F O R M     F O R     M V N O S
 
-     ║         +----------------------------------+           ║              +------------------------------+
-     ║         | operator-registry.cli            |           ║              | operator.administration.front| ◂------------- internal access for management
-     ║         +----------------------------------+           ║              +------------------------------+
+
+
+
+     ║         +-----------------------------------+          ║              +------------------------------+
+     ║         | operator-service.cli              |          ║              | operator.administration.front| ◂------------- internal access for management
+     ║         +-----------------------------------+          ║              +------------------------------+
      ║                                                        ║                          |
      ║                                                        ║                          ▼
- mvno-calls    +----------------------------------+           ║              +------------------------------+   
- ----║-------▸ | operator-registry-api            | ----------║------------▸ | operator-identity.api        |
- ◂---║-------- +----------------------------------+           ║              +------------------------------+
+ mvno-calls    +-----------------------------------+          ║              +------------------------------+   
+ ----║-------▸ | operator-service-registry.api     | ----------------------▸ | operator-identity.api        |
+ ◂---║-------- +-----------------------------------+          ║              +------------------------------+
      ║                      ▲                                 ║                          ▲       
      ║                      |                                 ║                          | 
      ║                      |                                 ║    +---------------------+ 
@@ -29,7 +32,7 @@ This repository present a full web new design for an IT system between mvno and 
      ║          .           |                       .         ║    |         +------------------------------+      +---------------------------------------+
      ║          .           |                       .         ║    |                     |
      ║          .           |                       .         ║    |         +------------------------------+      +---------------------------------------+
- mvno-calls     .  +-----------------------------+  .         ║    +-------▸ | operator-memory-pool.api     | ◂--- | operator-datastore-migration.api      |
+ mvno-calls     .  +-----------------------------+  .         ║    +-------▸ | operator-memory-pool.api     | ◂--- | operator-migration.api                |
  ----║--------▸ .  | operator-mvno-api           |  . --------║----+         | store: scripts, objects,etc. |      +---------------------------------------+
  ◂---║--------- .  |                             |  .         ║    |         +------------------------------+
      ║          .  +-----------------------------+  .         ║    |                     |
@@ -82,7 +85,7 @@ external-calls  . +-------------------------------+ .         ║    |          
 
 The main idea it use to communicate using http between processes and keep implementation of each component simple and reduce common dependencies on microservice projects. 
 
-# operator-registry-cli
+# operator-service-registry-cli
 Console application used for:
  * register/register public api
  * changing registry configuration or api config
@@ -93,7 +96,7 @@ Console application used for:
  * changing token renewal timeout
  * send a request to a mvno-api
 
-# operator-registry-api
+# operator-service-registry-api
 Main entrance to authenticate external applications, it will redirected to the rigth public api. It used to discover api depending to it's api key. Public apis can be located any where. And it may possible to a partenair to retrieve a list of endpoints.
 
 # operator-mvno-api
@@ -192,7 +195,7 @@ the cli can expose features
  operator-cli.exe datastore backup --file "my-backup.backup"
 ~~~
 
-# operator-datastore-migration-api
+# operator-migration-api
 
 This api must expose method to run or cancel a migration and configure how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings, etc... For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory blocks id passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will complete, it pusblish a message to the dispatcher and a migration result status is saved on the datastore. From the operator-administration-api, people can view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. This api can also avoid duplicated commands send in case where a migration process migrate at runtime by reading block after block. So, at the end this api (or the transaction-pool-api recommanded) will build / or take MigrationTransactionEntity and launch on-event or on-demand.
 
@@ -211,6 +214,8 @@ Then change only the order and the datastore list and move the main datastore at
 ~~~
  operator-cli.exe datastore swap --from DATASTORE[1] --to DATASTORE[0]
 ~~~
+
+An audit trail table or api for the migration can also be used to reconstruct the data. Just suppose that the migration api write on the parrallel datastore, it can take while, depending the loads, and during this time crud operation can occurs on the main datastore. That's why the audit trail can be used if the migration is going up or going down. the migration api must keep and be used an cursor audit trail. we can reconstruct in up and down after completing the migration. The rectification will happens at the end the migration, and the migration api will used the cursor and move up / down.
 
 # operator-transaction-pool-api
 This api used to control a transaction by making:
