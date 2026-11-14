@@ -222,7 +222,7 @@ about migration, there is differents things to know before writing the migration
  * fusion
 
 The migration.api can consume migrations commands and used an audit trail to reconstruct the data and the relationships. The migration api will use a cursor that point to a particular position on the audit trail. Depending to the commands, the migration api, will apply transformation, and move forward or backward using the cursor. the audit trail can be looks like a linkedlist that store datastore operations with old, and new value. Using something similar to a linked list we fuse, detach, append, etc... and this approach can be use full where the primary datastore will be update during the migration. the migration api can decide, depending to the migration settings, to ignore change or to continue the migration with new audit trail operations records.
-This api will used individual Command class (just a immutable POCO objects) and individual CommandHanlder<TCommand> classes that execute the datastore operation. For instance the first command could to clone previous element older that the cursor position and continue.
+This api will used individual Command class (just a immutable POCO objects) and individual CommandHanlder<TCommand> classes that execute the datastore operation. For instance the first command could to clone previous element older that the cursor position and continue. the migration api settings can expose, the list of command, the cursor position, the validation schemes and other settings (memory pool address, datastore endpoint, timeouts, etc... )
 
 # operator-transaction-pool-api
 This api used to control a transaction by making:
