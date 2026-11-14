@@ -244,15 +244,15 @@ In case of bulk commands, the memory-pool store transactions including the statu
 the memory pool can be used to store any kind of objects
 structure
 
-An example
+An example (the real implementation will be different, just to present some features)
 ~~~  
- public class MemoryBlock
+ public sealed class MemoryBlock
  {
      public string Id { get; set; }
      public string Type { get; set; }
-     public string Owner { get; set; }      // must not be expose the by api it should expose by the identity api
-     public string[] Readers { get; set; }  // must not be expose the by api it should expose by the identity api
-     public string[] Writers { get; set; }  // must not be expose the by api it should expose by the identity api
+     public bool IsProtected { get; set; }
+     public ulong? RetentionDays { get; set; }
+     public string Owner { get; set; }
      public Dictionary<string,string> Headers { get; set; }
      public Stream Content { get; set; }
  }
