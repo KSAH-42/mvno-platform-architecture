@@ -59,7 +59,7 @@ This repository present a full web new design for an IT system between mvno and 
      ║          .           |                       .         ║    |               +------------------------+
      ║          .           |                       .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
 external-calls  . +-------------------------------+ .         ║    |               +------------------------+
------║--------▸ . | operator-data-factory-api     | . --------║----+               | operator-grid-node-api |   ◂--------▸  Small Mobile network core
+-----║--------▸ . | operator-data-factory-api     | . --------║----+               | operator-grid-node-api |   ◂--------▸  Mobile network core
 ◂----║--------- . |                               | .         ║    |               +------------------------+
      ║          . +-------------------------------+ .         ║    |                     
      ║          .                                   .         ║    |
@@ -274,7 +274,7 @@ It's an example of an external system used to publish data, in this case it publ
 
 # operator-grid-api
 Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
-No MOM is used here: events driven are the requests sended by mvno-api or transaction-api or the adminstration-front.
+No MOM is used here: events driven are the requests sended by mvno-api or transaction-api or the administration-front.
 This api must expose resgisterNode and unregisterNode
 grid-api must have it'on entity stored into the datastore.
 
