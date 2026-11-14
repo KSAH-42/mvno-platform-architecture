@@ -286,3 +286,5 @@ Add elastic search for telemetry ? do we need that ? with eventing-api we build 
 fuse the operator-transaction-pool-api and operator-memory-pool-api ?
  -> so no, we can have a data system that write a data for migration and let trigger a migration transaction that can be controlled step by step with a completion percentage. juste make clean seperation of concerns. the memory-pool can be used by different api. 
 the agent-api for deployment can use os containerization sdk ?
+
+about downloading, write a poc for package manager, instead to send a request to a target agent, we send a request to a store, where the store will push to the agent/sink. and the client query download metrics by asking to the package store. just write a poc to see...
