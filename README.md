@@ -106,6 +106,7 @@ Mvno partenair make http calls to this api.
 It can handle  N number of internal memory session instances. 
 It expose commands and queries, only the needs not necessary all features.
 All operator-mvno-api must used HttpAuthenticateHeader (and use the appropriate scheme, or a support a custom scheme that can be different to public api) and HttpAuthorizationHeader. It may be possible that the mvno-api will not get the endpoints of some-api like the operator-dispatch-api.
+Theses services api will use their own DTO and expose business contracts.
 
 # operator.administration.front
 Represent a web front used by telecom operator staff for administration.
@@ -195,6 +196,7 @@ the cli can expose features
  operator-cli.exe datastore backup --file "my-backup.backup"
 ~~~
 
+
 # operator-migration-api
 
 This api must expose method to run or cancel a migration and configure how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings, etc... For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory blocks id passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will complete, it pusblish a message to the dispatcher and a migration result status is saved on the datastore. From the operator-administration-api, people can view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. This api can also avoid duplicated commands send in case where a migration process migrate at runtime by reading block after block. So, at the end this api (or the transaction-pool-api recommanded) will build / or take MigrationTransactionEntity and launch on-event or on-demand.
@@ -217,13 +219,11 @@ Then change only the order and the datastore list and move the main datastore at
 
 about migration, there is differents things to know before writing the migration api:
  * hard: read on the memory pool, write and ignore changes 
- * soft: read on the memory pool, write and add changes (up/down)
+ * soft: read on the memory pool, write and add changes
  * fusion
- 
-An audit trail can be used. The audit trail table or api (recommended) for the migration can also be used to reconstruct the data. So the audit trail could be something similar to a linkedlist.
-Just suppose that the migration api write on the parrallel datastore, it can take while, depending the loads, and during this time crud operation can occurs on the main datastore. That's why the audit trail can be used if the migration is going up or going down. the migration api must keep and be used an cursor audit trail. we can reconstruct in up and down after completing the migration. The rectification will happens at the end the migration, and the migration api will used the cursor and move up / down. So the datastore-api need to expose method for managing cursors. using cursors, cursor must be something similar to a hash value.
-the datastore can also just gives changes relative to a cursor after the migration has been down. Only changes will be need to the migration api to instruct commands to the datastore.
-If you need something flexible, the best things to do is probably something closer to a source control. the best things, is create a datastore will a branch and to fuse (merge).
+
+The migration.api can consume migrations commands and used an audit trail to reconstruct the data and the relationships. The migration api will use a cursor that point to a particular position on the audit trail. Depending to the commands, the migration api, will apply transformation, and move forward or backward using the cursor. the audit trail can be looks like a linkedlist that store datastore operations with old, and new value. Using something similar to a linked list we fuse, detach, append, etc... and this approach can be use full where the primary datastore will be update during the migration. the migration api can decide, depending to the migration settings, to ignore change or to continue the migration with new audit trail operations records.
+This api will used individual Command class (just a immutable POCO objects) and individual CommandHanlder<TCommand> classes that execute the datastore operation.
 
 # operator-transaction-pool-api
 This api used to control a transaction by making:
@@ -237,7 +237,7 @@ A transaction can be:
  * a class load on different assembly
  * a script C#
 
-This api will get an entity transcaction from the datastore api. it will browse the task list call the execute or rollback method. Depending of the implementation of transaction-workflow, it can a be also class a script that make http call on web-api. It store the results/status/errors, etc... and the transaction can also implement retries mecanisms on the task execute method
+This api will get an entity transaction from the datastore api. it will browse the task list call the execute or rollback method. Depending of the implementation of transaction-workflow, it can a be also class a script that make http call on web-api. It store the results/status/errors, etc... and the transaction can also implement retries mecanisms on the task execute method
 The transaction must save it's status, that mark as restauration point in case of critical failure occurs. The after restart the api, we can restore the position of the transaction, and continue the process.
 
 # operator-memory-pool-api
