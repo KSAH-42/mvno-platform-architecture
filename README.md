@@ -256,6 +256,14 @@ An example (the real implementation will be different, just to present some feat
      public Dictionary<string,string> Headers { get; set; }
      public Stream Content { get; set; }
  }
+
+ public sealed class MemoryBlockOwner
+ {
+     public string Id { get; set; }
+     public string Type { get; set; }
+     public HashSet<string> BlockIds { get; set; }
+     public Dictionary< /*block id*/ string , HashSet<string> > Permissions { get; set; }
+ }
 ~~~
 
 the main challenge is about data modelisation, it could be nice that identity api will persiste resource object where the resource_id is the entity_id or it will contains a property for saving the entity id, or something different like uri this resource object will expose a permissions collection property or role identifier, or something else.
