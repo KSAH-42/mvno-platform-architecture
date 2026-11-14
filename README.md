@@ -196,7 +196,6 @@ the cli can expose features
  operator-cli.exe datastore backup --file "my-backup.backup"
 ~~~
 
-
 # operator-migration-api
 
 This api must expose method to run or cancel a migration and configure how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings, etc... For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory blocks id passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will complete, it pusblish a message to the dispatcher and a migration result status is saved on the datastore. From the operator-administration-api, people can view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. This api can also avoid duplicated commands send in case where a migration process migrate at runtime by reading block after block. So, at the end this api (or the transaction-pool-api recommanded) will build / or take MigrationTransactionEntity and launch on-event or on-demand.
@@ -223,7 +222,7 @@ about migration, there is differents things to know before writing the migration
  * fusion
 
 The migration.api can consume migrations commands and used an audit trail to reconstruct the data and the relationships. The migration api will use a cursor that point to a particular position on the audit trail. Depending to the commands, the migration api, will apply transformation, and move forward or backward using the cursor. the audit trail can be looks like a linkedlist that store datastore operations with old, and new value. Using something similar to a linked list we fuse, detach, append, etc... and this approach can be use full where the primary datastore will be update during the migration. the migration api can decide, depending to the migration settings, to ignore change or to continue the migration with new audit trail operations records.
-This api will used individual Command class (just a immutable POCO objects) and individual CommandHanlder<TCommand> classes that execute the datastore operation.
+This api will used individual Command class (just a immutable POCO objects) and individual CommandHanlder<TCommand> classes that execute the datastore operation. For instance the first command could to clone previous element older that the cursor position and continue.
 
 # operator-transaction-pool-api
 This api used to control a transaction by making:
