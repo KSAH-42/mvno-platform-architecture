@@ -24,7 +24,7 @@ This repository present a full web new design for an IT system between mvno and 
      ║                      |                                 ║    |         +------------------------------+ 
      ║                      |                                 ║    |                     | 
      ║                      |                                 ║    |         +------------------------------+ 
-     ║                      |                                 ║    +-------▸ | operator-dispatch.api        | 
+     ║                      |                                 ║    +-------▸ | operator-dispatcher.api      | 
      ║                      |                                 ║    |         +------------------------------+ 
      ║                      |                                 ║    |                     |
      ║          . . . . . . . . . . . . . . . . . . .         ║    |         +------------------------------+      +---------------------------------------+
@@ -160,7 +160,7 @@ In C#, the CLI can we be easy to write, you can use Microsoft System.CommandLine
 
 a package repository is not present in the diagram. So the grid.api must have a controller with several methods for downloading and installing nodes. or even the cli must communicate with a hidden agent.api.
 
-# operator-dispatch.api
+# operator-dispatcher.api
 This api used to publish/subscribe to send and receive event for applications, it can expose the following event handling mecanisms:
 
  * send event to any application using http webhooks: sendevent method will used a http client and post a message, or enqueue a message
@@ -172,7 +172,7 @@ it may be possible to introduce an operator-dispatcher.api reserved for publish/
 
 the cli can expose messaging features, in this example if the target is not specified , we broadcast the message
 ~~~
- operator.cli.exe send-message --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" \
+ operator.cli.exe dispatcher send --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" \
    --topic "event.bandwith.changed" \
    --message \
     {
