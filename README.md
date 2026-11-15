@@ -20,15 +20,15 @@ This repository present a full web new design for an IT system between mvno and 
      ║                      |                                 ║    +---------------------+ 
      ║                      |                                 ║    |                     | 
      ║                      |                                 ║    |         +------------------------------+ 
-     ║                      |                                 ║    |         |       operator-cli           | 
+     ║                      |                                 ║    |         |       operator.cli           | 
      ║                      |                                 ║    |         +------------------------------+ 
      ║                      |                                 ║    |                     | 
      ║                      |                                 ║    |         +------------------------------+ 
-     ║                      |                                 ║    +-------▸ | operator-dispatch-api        | 
+     ║                      |                                 ║    +-------▸ | operator-dispatch.api        | 
      ║                      |                                 ║    |         +------------------------------+ 
      ║                      |                                 ║    |                     |
      ║          . . . . . . . . . . . . . . . . . . .         ║    |         +------------------------------+      +---------------------------------------+
-     ║          .   mvno operator apis              .         ║    +-------▸ | operator-datastore.api       | ◂--- | operator-transaction-pool-api         |
+     ║          .   mvno operator apis              .         ║    +-------▸ | operator-datastore.api       | ◂--- | operator-transaction-pool.api         |
      ║          .           |                       .         ║    |         +------------------------------+      +---------------------------------------+
      ║          .           |                       .         ║    |                     |
      ║          .           |                       .         ║    |         +------------------------------+      +---------------------------------------+
@@ -45,21 +45,21 @@ This repository present a full web new design for an IT system between mvno and 
      ║          .           |                       .         ║    |         +------------------------------+
      ║          .           |                       .         ║    |                     |      ▼  ▲
  mvno-calls     .  +-----------------------------+  .         ║    |               +------------------------+
- ----║--------▸ .  | operator-mvno-api.DefTelecom|  . --------║----+               | operator-grid-node-api |   ◂--------▸  Mobile network core
+ ----║--------▸ .  | operator-mvno-api.DefTelecom|  . --------║----+               | operator-grid-node.api |   ◂--------▸  Mobile network core
  ◂---║--------- .  |                             |  .         ║    |               +------------------------+
-     ║          .  +-----------------------------+  .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║          .  +-----------------------------+  .         ║    |               | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║          .                                   .         ║    |               +------------------------+
-     ║          . . . . . . . . . . . . . . . . . . .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║          . . . . . . . . . . . . . . . . . . .         ║    |               | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║                      |                                 ║    |               +------------------------+
-     ║                      |                                 ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║                      |                                 ║    |               | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║                      |                                 ║    |               +------------------------+
-     ║          . . . . . . . . . . . . . . . . . . .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║          . . . . . . . . . . . . . . . . . . .         ║    |               | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║          .   mvno migration apis             .         ║    |               +------------------------+
-     ║          .           |                       .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║          .           |                       .         ║    |               | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║          .           |                       .         ║    |               +------------------------+
-     ║          .           |                       .         ║    |               | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║          .           |                       .         ║    |               | operator-grid-node.api |   ◂--------▸  Mobile network core
 external-calls  . +-------------------------------+ .         ║    |               +------------------------+
------║--------▸ . | operator-data-factory-api     | . --------║----+               | operator-grid-node-api |   ◂--------▸  Mobile network core
+-----║--------▸ . | operator-data-factory.api     | . --------║----+               | operator-grid-node.api |   ◂--------▸  Mobile network core
 ◂----║--------- . |                               | .         ║    |               +------------------------+
      ║          . +-------------------------------+ .         ║    |                     
      ║          .                                   .         ║    |
@@ -68,17 +68,17 @@ external-calls  . +-------------------------------+ .         ║    |          
      ║                                                        ║              +------------------------------+
      ║                                                        ║                          |      ▼  ▲
      ║                                                        ║                    +------------------------+
-     ║                                                        ║                    | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║                                                        ║                    | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║                                                        ║                    +------------------------+
-     ║                                                        ║                    | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║                                                        ║                    | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║                                                        ║                    +------------------------+
-     ║                                                        ║                    | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║                                                        ║                    | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║                                                        ║                    +------------------------+
-     ║                                                        ║                    | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║                                                        ║                    | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║                                                        ║                    +------------------------+
-     ║                                                        ║                    | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║                                                        ║                    | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║                                                        ║                    +------------------------+
-     ║                                                        ║                    | operator-grid-node-api |   ◂--------▸  Mobile network core
+     ║                                                        ║                    | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║                                                        ║                    +------------------------+
 
 ~~~
@@ -285,12 +285,12 @@ The cli can expose features
 It's an example of an external system used to publish data, in this case it publish data migration and write on the memory-pool-api.
 
 # operator-grid-api
-Used managed managed node-api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
+Used managed managed node.api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
 No MOM is used here: events driven are the requests sended by mvno-api or transaction-api or the administration-front.
 This api must expose resgisterNode and unregisterNode
 grid-api must have it'on entity stored into the datastore.
 
-# operator-grid-node-api
+# operator-grid-node.api
 Translate incomming commands to telecom infra and communication provide metrics.
 
 # Temp
