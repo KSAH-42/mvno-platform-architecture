@@ -45,7 +45,7 @@ This repository present a full web new design for an IT system between mvno and 
      ║          .           |                       .         ║    |         +------------------------------+
      ║          .           |                       .         ║    |                     |      ▼  ▲
  mvno-calls     .  +-----------------------------+  .         ║    |               +------------------------+
- ----║--------▸ .  | operator-mvno-api.DefTelecom|  . --------║----+               | operator-grid-node.api |   ◂--------▸  Mobile network core
+ ----║--------▸ .  | operator-mvno.api.DefTelecom|  . --------║----+               | operator-grid-node.api |   ◂--------▸  Mobile network core
  ◂---║--------- .  |                             |  .         ║    |               +------------------------+
      ║          .  +-----------------------------+  .         ║    |               | operator-grid-node.api |   ◂--------▸  Mobile network core
      ║          .                                   .         ║    |               +------------------------+
@@ -88,24 +88,24 @@ The main idea it use to communicate using http between processes and keep implem
 # operator-service-registry.cli
 Console application used for:
  * register/register public api
- * enabling/disabling mnvo-api
+ * enabling/disabling mnvo.api
  * changing registry configuration
  * changing api config
  * querying the session
- * send a request to a mvno-api
+ * send a request to a mvno.api
  * getting logs
  * etc...
 
-# operator-service-registry-api
+# operator-service-registry.api
 Main entrance to authenticate external applications, it will redirected to the right public api. It used to discover api depending to it's api key. Public apis can be located any where. And it may possible to a partenair to retrieve the list of authorized endpoints.
 
-# operator-mvno-api
+# operator-mvno.api
 Dedicated implementation for a mvno partenair as a web api.
 Provide a better isolation, we can add new mvno-partenar without interruption
 Mvno partenair make http calls to this api.
 It can handle  N number of internal memory session instances. 
 It expose commands and queries, only the needs not necessary all features.
-All operator-mvno-api must used HttpAuthenticateHeader (and use the appropriate scheme, or a support a custom scheme that can be different to public api) and HttpAuthorizationHeader. It may be possible that the mvno-api will not get the endpoints of some-api like the operator-dispatch-api.
+All operator-mvno.api must used HttpAuthenticateHeader (and use the appropriate scheme, or a support a custom scheme that can be different to public api) and HttpAuthorizationHeader. It may be possible that the mvno.api will not get the endpoints of some.api like the operator-dispatch.api.
 Theses services api will use their own DTO and expose business contracts.
 
 # operator.administration.front
@@ -119,12 +119,12 @@ This front make http calls to internal web api, for:
  * maintenance 
  * etc...
 
-Mvno partenairs will not have access to it from mvno-api.
+Mvno partenairs will not have access to it from mvno.api.
 
-# operator-identity-api
+# operator-identity.api
 Authenticate api and users, deliver permissions. Public api must authenticate to this api. It's a kind of directory, but it doesn't persist or managed business entities, only managed authentication, and system resources. Business entities are store on the datastore api.
 
-This api provide also registration mecanism for apis. No external api, will be able to discovered internal/systems api through the operator-registry-api. This api must expose something to allow to retrieve the list of datastores ordered by a priority or something else that allow to discover the main datastore. An api can retrieve the list of datastore and move to the next datastore the current datastore is not available. Or it may be possible to introduce an api gateway that switch the datastore A to datastore B. The list will be enought for most cases.
+This api provide also registration mecanism for apis. No external api, will be able to discovered internal/systems api through the operator-registry.api. This api must expose something to allow to retrieve the list of datastores ordered by a priority or something else that allow to discover the main datastore. An api can retrieve the list of datastore and move to the next datastore the current datastore is not available. Or it may be possible to introduce an api gateway that switch the datastore A to datastore B. The list will be enought for most cases.
 
 # operator.cli
 Console application used to control and build telecom infrastructure by making only http calls using command line. It can do the following tasks:
@@ -158,17 +158,17 @@ In C#, the CLI can we be easy to write, you can use Microsoft System.CommandLine
  operator.cli.exe logout
 ~~~
 
-a package repository is not present in the diagram. So the grid-api must have a controller with several methods for downloading and installing nodes. or even the cli must communicate with a hidden agent-api.
+a package repository is not present in the diagram. So the grid.api must have a controller with several methods for downloading and installing nodes. or even the cli must communicate with a hidden agent.api.
 
-# operator-dispatch-api
+# operator-dispatch.api
 This api used to publish/subscribe to send and receive event for applications, it can expose the following event handling mecanisms:
 
  * send event to any application using http webhooks: sendevent method will used a http client and post a message, or enqueue a message
  * receive event using long pooling mecanism: by making http call on controller and pass a timeout value, the controller will block on concurrent queue until an event(s) as enqueue
 
-the event must be persisted. This api must be used only to status changed, configuration changed. And never to send a action to the grid-api. the grid-api can be notified to changed. the mvno-api must never send a message to this api for sending or broacast an action to all grid-api. the mvno-api must get the list of grid-api and send or not a request to a grid-api.
+the event must be persisted. This api must be used only to status changed, configuration changed. And never to send a action to the grid.api. the grid.api can be notified to changed. the mvno.api must never send a message to this api for sending or broacast an action to all grid.api. the mvno.api must get the list of grid.api and send or not a request to a grid.api.
 
-it may be possible to introduce an operator-dispatcher-api reserved for publish/subscribe event messages to applications using webhook, etc... we can used Microsoft Signal-R for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
+it may be possible to introduce an operator-dispatcher.api reserved for publish/subscribe event messages to applications using webhook, etc... we can used Microsoft Signal-R for instance for publish/subscribe, but here is to show how we can do without any nuget packgages. 
 
 the cli can expose messaging features, in this example if the target is not specified , we broadcast the message
 ~~~
@@ -186,9 +186,9 @@ and may predifined message type like
  operator.cli.exe send-message --type-bandwih-changed --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" --Node  "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value "12345000"
 ~~~
 
-# operator-datastore-api
+# operator-datastore.api
 Store entities and settings using a mongodb in a single place. One datastore per environnement DEV,PROD,etc... for failover and restoration and backup.
-for sensitive data like credit card, the real value must be store on operator-vault-api which are not represent here. the CreditCardEntity can expose a kind of id-pointer to the vault or something similar.
+for sensitive data like credit card, the real value must be store on operator-vault.api which are not represent here. the CreditCardEntity can expose a kind of id-pointer to the vault or something similar.
 
 the cli can expose features
 
@@ -196,11 +196,11 @@ the cli can expose features
  operator.cli.exe datastore backup --file "my-backup.backup"
 ~~~
 
-# operator-migration-api
+# operator-migration.api
 
-This api must expose method to run or cancel a migration and configure how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings, etc... For instance, when launching the migration, this api will read data on the memory-pool-api and select memmory blocks id passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore-api. it's a second datastore-api reserved for migration. After the migration will complete, it pusblish a message to the dispatcher and a migration result status is saved on the datastore. From the operator-administration-api, people can view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. This api can also avoid duplicated commands send in case where a migration process migrate at runtime by reading block after block. So, at the end this api (or the transaction-pool-api recommanded) will build / or take MigrationTransactionEntity and launch on-event or on-demand.
+This api must expose method to run or cancel a migration and configure how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings, etc... For instance, when launching the migration, this api will read data on the memory-pool.api and select memmory blocks id passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore.api. it's a second datastore.api reserved for migration. After the migration will complete, it pusblish a message to the dispatcher and a migration result status is saved on the datastore. From the operator-administration.api, people can view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. This api can also avoid duplicated commands send in case where a migration process migrate at runtime by reading block after block. So, at the end this api (or the transaction-pool.api recommanded) will build / or take MigrationTransactionEntity and launch on-event or on-demand.
 
-For instance, we can have an operator-data-factory-api who write only on the operator-memory-pool-api. And the migration-api will read only on the memory-pool until all has been written.
+For instance, we can have an operator-data-factory.api who write only on the operator-memory-pool.api. And the migration.api will read only on the memory-pool until all has been written.
 
 running the migration with cli:
 ~~~
@@ -224,7 +224,7 @@ about migration, there is differents things to know before writing the migration
 The migration.api can consume migrations commands and used an audit trail to reconstruct the data and the relationships. The migration api will use a cursor that point to a particular position on the audit trail. Depending to the commands, the migration api, will apply transformation, and move forward or backward using the cursor. the audit trail can be looks like a linkedlist that store datastore operations with old, and new value. Using something similar to a linked list we fuse, detach, append, etc... and this approach can be use full where the primary datastore will be update during the migration. the migration api can decide, depending to the migration settings, to ignore change or to continue the migration with new audit trail operations records.
 This api will used individual Command class (just a immutable POCO objects) and individual CommandHanlder<TCommand> classes that execute the datastore operation. For instance the first command could to clone previous element older that the cursor position and continue. the migration api settings can expose, the list of command, the cursor position, the validation schemes and other settings (memory pool address, datastore endpoint, timeouts, etc... )
 
-# operator-transaction-pool-api
+# operator-transaction-pool.api
 This api used to control a transaction by making:
  * start a transaction
  * stop a transaction
@@ -236,10 +236,10 @@ A transaction can be:
  * a class load on different assembly
  * a script C#
 
-This api will get an entity transaction from the datastore api. it will browse the task list call the execute or rollback method. Depending of the implementation of transaction-workflow, it can a be also class a script that make http call on web-api. It store the results/status/errors, etc... and the transaction can also implement retries mecanisms on the task execute method
+This api will get an entity transaction from the datastore api. it will browse the task list call the execute or rollback method. Depending of the implementation of transaction-workflow, it can a be also class a script that make http call on web.api. It store the results/status/errors, etc... and the transaction can also implement retries mecanisms on the task execute method
 The transaction must save it's status, that mark as restauration point in case of critical failure occurs. The after restart the api, we can restore the position of the transaction, and continue the process.
 
-# operator-memory-pool-api
+# operator-memory-pool.api
 In case of bulk commands, the memory-pool store transactions including the status of each steps. Transaction represent the commands/workflow to execute. Each transaction store in the memory-pool is just object with a id, a type, a list of step with status, and the transaction settings.
 the memory pool can be used to store any kind of objects
 structure
@@ -273,7 +273,7 @@ An example (the real implementation will be different, just to present some feat
 
 the main challenge is about data modelisation, it could be nice that identity api will persiste resource object where the resource_id is the entity_id or it will contains a property for saving the entity id, or something different like uri this resource object will expose a permissions collection property or role identifier, or something else.
 
-the memory-pool-api must be controlled by permissions on create/remove/read/write/update.
+the memory-pool.api must be controlled by permissions on create/remove/read/write/update.
 
 The cli can expose features
 
@@ -281,23 +281,23 @@ The cli can expose features
   operator.cli.exe memory-pool clear
 ~~~
 
-# operator-data-factory-api
-It's an example of an external system used to publish data, in this case it publish data migration and write on the memory-pool-api.
+# operator-data-factory.api
+It's an example of an external system used to publish data, in this case it publish data migration and write on the memory-pool.api.
 
-# operator-grid-api
+# operator-grid.api
 Used managed managed node.api, route commands, etc... the grid api will send a command to a node and the node can reply using webhook long processsing.
-No MOM is used here: events driven are the requests sended by mvno-api or transaction-api or the administration-front.
+No MOM is used here: events driven are the requests sended by mvno.api or transaction.api or the administration-front.
 This api must expose resgisterNode and unregisterNode
-grid-api must have it'on entity stored into the datastore.
+grid.api must have it'on entity stored into the datastore.
 
 # operator-grid-node.api
 Translate incomming commands to telecom infra and communication provide metrics.
 
 # Temp
 Addinng a telecom.sdk used by the services apis ?
-Add elastic search for telemetry ? do we need that ? with eventing-api we build stats.
-fuse the operator-transaction-pool-api and operator-memory-pool-api ?
+Add elastic search for telemetry ? do we need that ? with eventing.api we build stats.
+fuse the operator-transaction-pool.api and operator-memory-pool.api ?
  -> so no, we can have a data system that write a data for migration and let trigger a migration transaction that can be controlled step by step with a completion percentage. juste make clean seperation of concerns. the memory-pool can be used by different api. 
-the agent-api for deployment can use os containerization sdk ?
+the agent.api for deployment can use os containerization sdk ?
 
 about downloading, write a poc for package manager, instead to send a request to a target agent, we send a request to a store, where the store will push to the agent/sink. and the client query download metrics by asking to the package store. just write a poc to see...
