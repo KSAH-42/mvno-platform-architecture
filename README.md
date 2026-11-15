@@ -88,16 +88,16 @@ The main idea it use to communicate using http between processes and keep implem
 # operator-service-registry-cli
 Console application used for:
  * register/register public api
- * changing registry configuration or api config
- * disable/enable session
- * querying the status of active session
- * querying the status of mnvo-api
  * enabling/disabling mnvo-api
- * changing token renewal timeout
+ * changing registry configuration
+ * changing api config
+ * querying the session
  * send a request to a mvno-api
+ * getting logs
+ * etc...
 
 # operator-service-registry-api
-Main entrance to authenticate external applications, it will redirected to the rigth public api. It used to discover api depending to it's api key. Public apis can be located any where. And it may possible to a partenair to retrieve a list of endpoints.
+Main entrance to authenticate external applications, it will redirected to the right public api. It used to discover api depending to it's api key. Public apis can be located any where. And it may possible to a partenair to retrieve the list of authorized endpoints.
 
 # operator-mvno-api
 Dedicated implementation for a mvno partenair as a web api.
@@ -117,7 +117,7 @@ This front make http calls to internal web api, for:
  * changing customers properties
  * add new customers
  * maintenance 
- * ...
+ * etc...
 
 Mvno partenairs will not have access to it from mvno-api.
 
