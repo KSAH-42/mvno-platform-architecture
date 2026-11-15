@@ -85,7 +85,7 @@ external-calls  . +-------------------------------+ .         ║    |          
 
 The main idea it use to communicate using http between processes and keep implementation of each component simple and reduce common dependencies on microservice projects. 
 
-# operator-service-registry-cli
+# operator-service-registry.cli
 Console application used for:
  * register/register public api
  * enabling/disabling mnvo-api
@@ -126,7 +126,7 @@ Authenticate api and users, deliver permissions. Public api must authenticate to
 
 This api provide also registration mecanism for apis. No external api, will be able to discovered internal/systems api through the operator-registry-api. This api must expose something to allow to retrieve the list of datastores ordered by a priority or something else that allow to discover the main datastore. An api can retrieve the list of datastore and move to the next datastore the current datastore is not available. Or it may be possible to introduce an api gateway that switch the datastore A to datastore B. The list will be enought for most cases.
 
-# operator-cli
+# operator.cli
 Console application used to control and build telecom infrastructure by making only http calls using command line. It can do the following tasks:
  * send command to the grid
  * making crud operations
@@ -148,14 +148,14 @@ Console application used to control and build telecom infrastructure by making o
 In C#, the CLI can we be easy to write, you can use Microsoft System.CommandLine and use Gof Patterns (Command Pattern), or reuse somethinh similar from the CommandHandler used in CQRS (cqrs may not the recommended choice for a cli, but you can peek some idea from it) and make a series of http call inside a command object, and the command expose a validation method that throw exception in case of missing parameter, invalid parameters, and the execute method by the HttpClient with it's factory or consumme a service interface that make http calls internaly. 
 
 ~~~
- operator-cli.exe logon -u "admin" -p "password"
- operator-cli.exe grid create-node --id "1234465B-1888-48E8-BB43-181D2C1F682F" --type rabbit.telecom/1.1
- operator-cli.exe grid start-node --id "1234465B-1888-48E8-BB43-181D2C1F682F"
- operator-cli.exe network register-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" 
- operator-cli.exe network enable-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --node 1234465B-1888-48E8-BB43-181D2C1F682F
- operator-cli.exe network set-cellular-bandwith --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value 12345000 --node 1234465B-1888-48E8-BB43-181D2C1F682F
- operator-cli.exe network send-sms --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value "my message"
- operator-cli.exe logout
+ operator.cli.exe logon -u "admin" -p "password"
+ operator.cli.exe grid create-node --id "1234465B-1888-48E8-BB43-181D2C1F682F" --type rabbit.telecom/1.1
+ operator.cli.exe grid start-node --id "1234465B-1888-48E8-BB43-181D2C1F682F"
+ operator.cli.exe network register-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" 
+ operator.cli.exe network enable-cellular --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --node 1234465B-1888-48E8-BB43-181D2C1F682F
+ operator.cli.exe network set-cellular-bandwith --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value 12345000 --node 1234465B-1888-48E8-BB43-181D2C1F682F
+ operator.cli.exe network send-sms --id "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value "my message"
+ operator.cli.exe logout
 ~~~
 
 a package repository is not present in the diagram. So the grid-api must have a controller with several methods for downloading and installing nodes. or even the cli must communicate with a hidden agent-api.
@@ -172,7 +172,7 @@ it may be possible to introduce an operator-dispatcher-api reserved for publish/
 
 the cli can expose messaging features, in this example if the target is not specified , we broadcast the message
 ~~~
- operator-cli.exe send-message --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" \
+ operator.cli.exe send-message --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" \
    --topic "event.bandwith.changed" \
    --message \
     {
@@ -183,7 +183,7 @@ the cli can expose messaging features, in this example if the target is not spec
 
 and may predifined message type like 
 ~~~
- operator-cli.exe send-message --type-bandwih-changed --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" --Node  "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value "12345000"
+ operator.cli.exe send-message --type-bandwih-changed --target "B538ED1B-1478-8EE5-2183-1DCB4B68F21F" --Node  "B8D531EB-18E8-47E5-B4B3-1D218C681FF2" --value "12345000"
 ~~~
 
 # operator-datastore-api
@@ -193,7 +193,7 @@ for sensitive data like credit card, the real value must be store on operator-va
 the cli can expose features
 
 ~~~
- operator-cli.exe datastore backup --file "my-backup.backup"
+ operator.cli.exe datastore backup --file "my-backup.backup"
 ~~~
 
 # operator-migration-api
@@ -204,16 +204,16 @@ For instance, we can have an operator-data-factory-api who write only on the ope
 
 running the migration with cli:
 ~~~
- operator-cli.exe datastore run-migration --target DATASTORE~1
+ operator.cli.exe datastore run-migration --target DATASTORE~1
 ~~~
 or
 ~~~
- operator-cli.exe datastore run-migration --target DATASTORE[1]
+ operator.cli.exe datastore run-migration --target DATASTORE[1]
 ~~~
 
 Then change only the order and the datastore list and move the main datastore at the secondary level without modifying its content.
 ~~~
- operator-cli.exe datastore swap --from DATASTORE[1] --to DATASTORE[0]
+ operator.cli.exe datastore swap --from DATASTORE[1] --to DATASTORE[0]
 ~~~
 
 about migration, there is differents things to know before writing the migration api:
@@ -278,7 +278,7 @@ the memory-pool-api must be controlled by permissions on create/remove/read/writ
 The cli can expose features
 
 ~~~
-  operator-cli.exe memory-pool clear
+  operator.cli.exe memory-pool clear
 ~~~
 
 # operator-data-factory-api
