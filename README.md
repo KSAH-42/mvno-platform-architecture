@@ -196,7 +196,7 @@ the cli can expose features
  operator.cli.exe datastore backup --file "my-backup.backup"
 ~~~
 
-The datastore can use validation schemes that can be configured for making crud operations. And theses schemes can be managed by the operators staff from the administration.front app.
+The datastore can use validation schemes that can be configured for making crud operations. And theses schemes can be managed by the operators staff from the administration.front app. the validator hanlder can browse properties on the entity using reflection and select the right validator.
 
 # operator-migration.api
 
