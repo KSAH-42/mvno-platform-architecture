@@ -211,7 +211,7 @@ or
  operator.cli.exe datastore run-migration --target DATASTORE[1]
 ~~~
 
-Then change only the order and the datastore list and move the main datastore at the secondary level without modifying its content.
+Then change only the order and the datastore list and move the main datastore at the secondary level.
 ~~~
  operator.cli.exe datastore swap --from DATASTORE[1] --to DATASTORE[0]
 ~~~
