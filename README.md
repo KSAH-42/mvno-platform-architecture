@@ -314,6 +314,9 @@ Translate incomming commands to telecom infra and communication provide metrics.
 # about load balancing
 The monitoring service api will received or collect metric from the api, and then it send updates to the identity.api. As we discus below, the identity.api hold a collection of endpoints for service and it make possible to put a weigth, that influence the priority, the weigth will be published by the monitoring.api to identity.api. Then operator-mvno.api can make a query to identity.api to retrieve the the best api endpoints. This list can change at runtime. Notification can be published by the operator-dispatcher.api. The identity.api will publish an event or reply to a request and the message will contains the list with ordered endpoints.
 
+# about the failover
+.
+
 # Temp
 Addinng a telecom.sdk used by the services apis ?
 Add elastic search for telemetry ? do we need that ? with eventing.api we build stats.
