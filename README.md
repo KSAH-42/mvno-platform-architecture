@@ -236,6 +236,7 @@ an exemple of migration settings:
          public string MemoryBlockAddress { get; set; }
          public CursorConfiguration Cursor { get; set; }
          public Commands[] Commands { get; set; }
+         public Transformation[] Transformations { get; set; } 
          public ValidationScheme[] ValidationSchemmes { get; set; }
    }
 ~~~
