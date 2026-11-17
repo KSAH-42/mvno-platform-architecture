@@ -313,7 +313,7 @@ grid.api must have it'on entity stored into the datastore.
 Translate incomming commands to telecom infra and communication provide metrics.
 
 # about load balancing
-The monitoring service api will received or collect metrics from the api, and then it send updates to the operator-dispatcher.api. The message will contains the endpoint, a weigth and an overload probability factor. These factors will influence the decision to to select a different api. And the monitoring service can send a request to an agent to build an new api.
+The monitoring service api will received or collect metrics from the api, and then it send updates to the operator-dispatcher.api. The message will contains the endpoint, a weigth (that represent a synthesis of the current overload) and a new factor called overloadProbability depending of allocation resources, etc.... These factors will influence the decision to to select a different api. And the monitoring service can send a request to an agent to build an new api to extends the system.
 
 # about the failover
 .
