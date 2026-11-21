@@ -195,7 +195,25 @@ The datastore can use validation schemes that can be configured for making crud 
 
 # operator-migration.api
 
-This api must expose method to run or cancel a migration and configure how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings, etc... For instance, when launching the migration, this api will read data on the memory-pool.api and select memmory blocks id passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore.api. it's a second datastore.api reserved for migration. After the migration will complete, it pusblish a message to the dispatcher and a migration result status is saved on the datastore. From the operator-administration.api, people can view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. This api can also avoid duplicated commands send in case where a migration process migrate at runtime by reading block after block. So, at the end this api (or the transaction-pool.api recommanded) will build / or take MigrationTransactionEntity and launch on-event or on-demand.
+This api must expose method to run or cancel a migration and configure how the migration will be executed. For instance, a controller can expose a method to configure by passing migration settings, transformations settings, etc... For instance, when launching the migration, this api will read data on the memory-pool.api and select memmory blocks id passed on the configuration settings. Then the migration will create/delete/udapte/transform entities on a parallel datastore.api not by using crud controllers, but instead to write by using a datastructure used by the audit trail. it make the migration api compatible to other datastore in case the system using multiple datastore. 
+
+An example of the datastructure
+~~~
+   public sealed class AuditRecord
+   {
+         public Guid? Id { get; set; }
+         public Guid? Previous { get; set; }
+         public DateTime? TimeStamp { get; set; }
+         public string? Source { get; set; }
+         public string? SourceType { get; set; }
+         public string? EntityType { get; set; }
+         public string? Operation { get; set; }  // MyProperty/Write or MyProperty/Add or MyProperty/Remove or MyProperty/Clear or Created , etc...
+         public string? OldValue { get; set; }
+         public string? NewValue { get; set; }
+   }
+~~~
+
+The second datastore.api reserved for migration. After the migration will complete, it pusblish a message to the dispatcher and a migration result status is saved on the datastore. From the operator-administration.api, people can view the migration result and decided to swap datastores by changing endpoints / or priority on datastore endpoint lists registered on the identity api. This api can also avoid duplicated commands send in case where a migration process migrate at runtime by reading block after block. So, at the end this api (or the transaction-pool.api recommanded) will build / or take MigrationTransactionEntity and launch on-event or on-demand.
 
 For instance, we can have an operator-data-factory.api who write only on the operator-memory-pool.api. And the migration.api will read only on the memory-pool until all has been written.
 
