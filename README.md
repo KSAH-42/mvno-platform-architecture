@@ -209,7 +209,7 @@ An example of the datastructure
          public string? SourceType { get; set; }
          public string? EntityType { get; set; }
          public string? Operation { get; set; }  // MyProperty/Write or MyProperty/Add or MyProperty/Remove or MyProperty/Clear or Created , etc...
-         public string? ValueFormat { get; set; }
+         public string? ValueFormat { get; set; } // store the data format / serialization type info
          public string? OldValue { get; set; }
          public string? NewValue { get; set; }
    }
