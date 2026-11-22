@@ -325,6 +325,9 @@ grid.api must have it'on entity stored into the datastore.
 # operator-grid-node.api
 Translate incomming commands to telecom infra and communication provide metrics.
 
+# about security
+All internal / public API will used TLS to secure communuication, the API key and custom Authentication Scheme can be implemented for internal communication. But it could be important to have probe like IDS, or even an API that use raw socket to read network traffic. It may important that to monitor bandwith where something like a fake network device like a switch that introduce delay and create customer unstatisfaction. An api gateway that include raw socket put before and after the an api can be something usefull for the montoring-api. 
+
 # about load balancing
 The monitoring service api will received or collect metrics from the api, and then it send updates to the operator-dispatcher.api. The message will contains the endpoint, a weigth (that represent a synthesis of the current overload) and a new factor called overloadProbability depending of allocation resources, etc.... These factors will influence the decision to to select a different api. And the monitoring service can send a request to an agent to build an new api to extends the system.
 
