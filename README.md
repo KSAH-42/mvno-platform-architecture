@@ -200,6 +200,7 @@ This api must expose method to run or cancel a migration and configure how the m
 An example of the datastructure
 ~~~
    public sealed class AuditRecord
+// public sealed class EntityChanges
    {
          public Guid? Id { get; set; }
          public Guid? Previous { get; set; }
@@ -207,6 +208,7 @@ An example of the datastructure
          public DateTime? TimeStamp { get; set; }
          public string? Source { get; set; }
          public string? SourceType { get; set; }
+         public string? EntityId { get; set; }
          public string? EntityType { get; set; }
          public string? Operation { get; set; }  // MyProperty/Write or MyProperty/Add or MyProperty/Remove or MyProperty/Clear or Created , etc...
          public string? ValueFormat { get; set; } // store the data format / serialization type info
