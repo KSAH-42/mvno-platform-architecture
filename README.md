@@ -233,6 +233,8 @@ Then change only the order and the datastore list and move the main datastore at
  operator.cli.exe datastore swap --from DATASTORE[1] --to DATASTORE[0]
 ~~~
 
+and the migration api can also continue, the operator staff can send a request to add changes on the orignal datastore.
+
 about migration, there is differents things to know before writing the migration api:
  * hard: read on the memory pool, write and ignore changes 
  * soft: read on the memory pool, write and add changes
