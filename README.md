@@ -100,7 +100,7 @@ Console application used for:
 Main entrance to authenticate external applications, it will redirected to the right public api. It used to discover api depending to it's api key. Public apis can be located any where. And it may possible to a partenair to retrieve the list of authorized endpoints.
 
 # operator-mvno.api
-Dedicated implementation for a mvno partenair as a web api.
+Dedicated implementation for a mvno partenair as a web api that host the business logic.
 Provide a better isolation, we can add new mvno-partenar without interruption
 Mvno partenair make http calls to this api.
 It can handle  N number of internal memory session instances. 
