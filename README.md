@@ -203,11 +203,13 @@ An example of the datastructure
    {
          public Guid? Id { get; set; }
          public Guid? Previous { get; set; }
+         public Guid? Next { get; set; }
          public DateTime? TimeStamp { get; set; }
          public string? Source { get; set; }
          public string? SourceType { get; set; }
          public string? EntityType { get; set; }
          public string? Operation { get; set; }  // MyProperty/Write or MyProperty/Add or MyProperty/Remove or MyProperty/Clear or Created , etc...
+         public string? ValueFormat { get; set; }
          public string? OldValue { get; set; }
          public string? NewValue { get; set; }
    }
